@@ -18,8 +18,10 @@ package de.ngc.ngcsolarsystem;
 
 public class SolarSystem {
 	
+	private static GUI gui;
+	
 	public static void main(String[] args) {
-		
+		gui = new GUI();
 	}
 
 }
