@@ -20,40 +20,82 @@ import java.awt.Color;
 
 public class Planet {
 	
+	private static final double gamma = 6.67 * Math.pow(10.0, -11.0);
+	
 	private String name;
 	private Color color;
 	
 	private long mass;
-	private int x;
-	private int y;
-	private int velocity_x;
-	private int velocity_y;
+	private double x;
+	private double y;
+	private double velocity_x;
+	private double velocity_y;
+	private double radius;
 	
-	public Planet(String name, Color color, long mass, int[] startConditions) {
+	public Planet(String name, Color color, long mass, double radius, double[] startConditions) {
 		this.name = name;
 		this.color = color;
 		this.mass = mass;
-		
+		this.radius = radius;
 		x = startConditions[0];
 		y = startConditions[1];
 		velocity_x = startConditions[2];
 		velocity_y = startConditions[3];
 	}
 	
-	protected int getX() {
+	protected double X() {
 		return x;
 	}
 	
-	protected int getY() {
+	protected double Y() {
 		return y;
 	}
 	
-	protected int getVelocityX() {
+	protected double veloX() {
 		return velocity_x;
 	}
 	
-	protected int getVelocityY() {
+	protected double veloY() {
 		return velocity_y;
+	}
+	
+	protected double getRadius() {
+		return radius;
+	}
+	
+	protected void next() {
+		return;
+	}
+	
+	protected static class Calc {
+		
+		protected static double nextAccelX(long M, double r, double x) {
+			return ((-gamma * M) / Math.pow(r, 3.0)) * x;
+		}
+		
+		protected static double nextAccelY(long M, double r, double y) {
+			return ((-gamma * M) / Math.pow(r, 3.0)) * y;
+		}
+		
+		protected static double nextVeloX(double veloX, double accelX, double deltaT) {
+			return veloX + accelX * deltaT;
+		}
+		
+		protected static double nextVeloY(double veloY, double accelY, double deltaT) {
+			return veloY + accelY * deltaT;
+		}
+		
+		protected static double nextX(double x, double veloX, double deltaT) {
+			return x + veloX * deltaT;
+		}
+		
+		protected static double nextY(double y, double veloY, double deltaT) {
+			return y + veloY * deltaT;
+		}
+		
+		protected static double nextRadius(double x, double y) {
+			return Math.sqrt(Math.pow(x, 2.0) * Math.pow(y, 2.0));
+		}
 	}
 
 }
