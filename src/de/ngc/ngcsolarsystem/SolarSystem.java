@@ -16,9 +16,13 @@
  */
 package de.ngc.ngcsolarsystem;
 
+import java.util.ArrayList;
+
 public class SolarSystem {
 	
 	private static GUI gui;
+	
+	public static ArrayList<Planet> planets = new ArrayList<>();
 	
 	public static void main(String[] args) {
 		gui = new GUI();

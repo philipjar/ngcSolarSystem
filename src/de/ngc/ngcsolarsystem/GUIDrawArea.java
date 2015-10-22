@@ -16,26 +16,23 @@
  */
 package de.ngc.ngcsolarsystem;
 
-import java.awt.Color;
+import java.awt.Graphics;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class GUI {
+public class GUIDrawArea extends JPanel{
+
+	private static final long serialVersionUID = 1L;
 	
-	public GUI(){
+	@Override
+	protected void paintComponent(Graphics g){
 		
-		JFrame frame = new JFrame("Solar System");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 500);
-		frame.setVisible(true);
+		for(Planet p : SolarSystem.planets){
+			
+		}
 		
-		GUIDrawArea drawArea = new GUIDrawArea();
-		
-		drawArea.setBackground(Color.BLACK);
-		
-		frame.add(drawArea);
-		
-		frame.repaint();
+		super.paintComponent(g);
+	
 	}
 
 }
