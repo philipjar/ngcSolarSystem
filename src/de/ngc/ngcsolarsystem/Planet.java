@@ -26,6 +26,7 @@ public class Planet {
 	private Color color;
 	
 	private long mass;
+	private double orbitalRadius;
 	private double x;
 	private double y;
 	private double velocity_x;
@@ -41,6 +42,7 @@ public class Planet {
 		y = startConditions[1];
 		velocity_x = startConditions[2];
 		velocity_y = startConditions[3];
+		orbitalRadius = startConditions[4];
 	}
 	
 	protected double X() {
@@ -63,8 +65,18 @@ public class Planet {
 		return radius;
 	}
 	
+	protected Color getColor() {
+		return color;
+	}
+	
 	protected void next() {
-		return;
+		double accelX = Calc.nextAccelX(mass, orbitalRadius, x);
+		double accelY = Calc.nextAccelY(mass, orbitalRadius, y);
+		velocity_x = Calc.nextVeloX(velocity_x, accelX, 1);
+		velocity_y = Calc.nextVeloY(velocity_y, accelY, 1);
+		x = Calc.nextX(x, velocity_x, 1);
+		y = Calc.nextY(y, velocity_y, 1);
+		orbitalRadius = Calc.nextOrbitalRadius(x, y);
 	}
 	
 	protected static class Calc {
@@ -93,7 +105,7 @@ public class Planet {
 			return y + veloY * deltaT;
 		}
 		
-		protected static double nextRadius(double x, double y) {
+		protected static double nextOrbitalRadius(double x, double y) {
 			return Math.sqrt(Math.pow(x, 2.0) * Math.pow(y, 2.0));
 		}
 	}
