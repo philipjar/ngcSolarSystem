@@ -80,6 +80,11 @@ public class Planet {
 		x = Calc.nextX(x, velocity_x, 1);
 		y = Calc.nextY(y, velocity_y, 1);
 		orbitalRadius = Calc.nextOrbitalRadius(x, y);
+		System.out.println("----------------------------");
+		System.out.println(String.valueOf(x));
+		System.out.println(String.valueOf(y));
+		System.out.println("----------------------------");
+		System.out.println("\n\n");
 	}
 	
 	protected static class Calc {
