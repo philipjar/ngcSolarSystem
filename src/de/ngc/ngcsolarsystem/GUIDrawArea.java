@@ -16,6 +16,7 @@
  */
 package de.ngc.ngcsolarsystem;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -29,10 +30,15 @@ public class GUIDrawArea extends JPanel{
 		
 		super.paintComponent(g);
 		
+		g.translate(0+400, 0+250);
+		
+		g.setColor(new Color(255, 0, 0));
+		g.fillOval(0, 0, 20, 20);
+		
 		for(Planet p : SolarSystem.planets){
 		
 			g.setColor(p.getColor());
-			g.drawOval(((int) (p.X()-p.getRadius())), ((int)(p.Y()-p.getRadius())), (int)p.getRadius()*2, (int)p.getRadius()*2);
+			g.fillOval(((int) (p.X()-p.getRadius())), ((int)(p.Y()-p.getRadius())), (int)p.getRadius()*2, (int)p.getRadius()*2);
 			
 		}
 	
