@@ -27,7 +27,7 @@ public class SolarSystem {
 	
 	public static void main(String[] args) {
 		gui = new GUI();
-		double[] startConds = {200.0, 100.0, 0.0, 1.0, 150000000000.0};
+		double[] startConds = {200.0, 30.0, 0.0, 3.5, 150000000000.0};
 		Planet earth = new Planet("Earth", Color.BLUE, (long) (2.0 * Math.pow(10, 30)), 1, 5, startConds);
 		planets.add(earth);
 		
