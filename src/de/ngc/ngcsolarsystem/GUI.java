@@ -16,6 +16,8 @@
  */
 package de.ngc.ngcsolarsystem;
 
+import java.awt.Color;
+
 import javax.swing.JFrame;
 
 public class GUI {
@@ -26,6 +28,14 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 500);
 		frame.setVisible(true);
+		
+		GUIDrawArea drawArea = new GUIDrawArea();
+		
+		drawArea.setBackground(Color.BLACK);
+		
+		frame.add(drawArea);
+		
+		frame.repaint();
 	}
 
 }
