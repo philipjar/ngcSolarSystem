@@ -27,11 +27,14 @@ public class GUIDrawArea extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g){
 		
+		super.paintComponent(g);
+		
 		for(Planet p : SolarSystem.planets){
+		
+			g.setColor(p.getColor());
+			g.drawOval(((int) (p.X()-p.getRadius())), ((int)(p.Y()-p.getRadius())), (int)p.getRadius()*2, (int)p.getRadius()*2);
 			
 		}
-		
-		super.paintComponent(g);
 	
 	}
 
