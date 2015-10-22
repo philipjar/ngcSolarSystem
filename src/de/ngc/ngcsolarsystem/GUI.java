@@ -28,6 +28,7 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 500);
 		frame.setVisible(true);
+		frame.setResizable(false);
 		
 		GUIDrawArea drawArea = new GUIDrawArea();
 		
