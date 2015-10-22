@@ -1,5 +1,5 @@
 /*	Solar System Simulation.
-    Copyright (C) 2015 Philip Lindner and Tim Rademacher
+    Copyright (C) 2015 Philip Lindner and Tim Rademacher 
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ public class GUI {
 		
 		JFrame frame = new JFrame("Solar System");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(100, 300);
+		frame.setSize(800, 500);
 		frame.setVisible(true);
 	}
 
