@@ -1,4 +1,4 @@
-/*		Solar System Simulation.
+/*	Solar System Simulation.
     Copyright (C) 2015 Philip Lindner and Tim Rademacher
 
     This program is free software: you can redistribute it and/or modify
