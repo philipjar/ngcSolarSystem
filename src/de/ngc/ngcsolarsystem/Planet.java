@@ -20,7 +20,7 @@ import java.awt.Color;
 
 public class Planet {
 	
-	private static final double gamma = 6.67 * Math.pow(10.0, -11.0);
+	private static final double gamma = 6.67E-11;
 	
 	private String name;
 	private Color color;
@@ -98,19 +98,19 @@ public class Planet {
 		}
 		
 		protected static double nextVeloX(double veloX, double accelX, double deltaT) {
-			return veloX + accelX * deltaT;
+			return veloX + (accelX * deltaT);
 		}
 		
 		protected static double nextVeloY(double veloY, double accelY, double deltaT) {
-			return veloY + accelY * deltaT;
+			return veloY + (accelY * deltaT);
 		}
 		
 		protected static double nextX(double x, double veloX, double deltaT) {
-			return x + veloX * deltaT;
+			return x + (veloX * deltaT);
 		}
 		
 		protected static double nextY(double y, double veloY, double deltaT) {
-			return y + veloY * deltaT;
+			return y + (veloY * deltaT);
 		}
 		
 		protected static double nextOrbitalRadius(double x, double y) {
