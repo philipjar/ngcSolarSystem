@@ -30,7 +30,7 @@ public class GUIDrawArea extends JPanel{
 		
 		super.paintComponent(g);
 		
-		g.translate(0+400, 0+250);
+		g.translate(0+350, 0+350);
 		
 		g.setColor(new Color(255, 0, 0));
 		g.fillOval(0, 0, 20, 20);
