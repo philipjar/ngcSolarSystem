@@ -25,6 +25,8 @@ public class Planet {
 	private String name;
 	private Color color;
 	
+	private long centralMass;
+	
 	private long mass;
 	private double orbitalRadius;
 	private double x;
@@ -33,9 +35,10 @@ public class Planet {
 	private double velocity_y;
 	private double radius;
 	
-	public Planet(String name, Color color, long mass, double radius, double[] startConditions) {
+	public Planet(String name, Color color, long centralMass, long mass, double radius, double[] startConditions) {
 		this.name = name;
 		this.color = color;
+		this.centralMass = centralMass;
 		this.mass = mass;
 		this.radius = radius;
 		x = startConditions[0];
@@ -70,8 +73,8 @@ public class Planet {
 	}
 	
 	protected void next() {
-		double accelX = Calc.nextAccelX(mass, orbitalRadius, x);
-		double accelY = Calc.nextAccelY(mass, orbitalRadius, y);
+		double accelX = Calc.nextAccelX(centralMass, orbitalRadius, x);
+		double accelY = Calc.nextAccelY(centralMass, orbitalRadius, y);
 		velocity_x = Calc.nextVeloX(velocity_x, accelX, 1);
 		velocity_y = Calc.nextVeloY(velocity_y, accelY, 1);
 		x = Calc.nextX(x, velocity_x, 1);
