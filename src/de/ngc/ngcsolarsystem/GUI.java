@@ -22,9 +22,11 @@ import javax.swing.JFrame;
 
 public class GUI {
 	
+	private JFrame frame;
+	
 	public GUI(){
 		
-		JFrame frame = new JFrame("Solar System");
+		frame = new JFrame("Solar System");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 500);
 		frame.setVisible(true);
@@ -36,6 +38,10 @@ public class GUI {
 		
 		frame.add(drawArea);
 		
+		frame.repaint();
+	}
+	
+	public void repaintFrame() {
 		frame.repaint();
 	}
 
