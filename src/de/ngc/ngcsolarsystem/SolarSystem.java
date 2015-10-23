@@ -28,8 +28,8 @@ public class SolarSystem {
 	public static void main(String[] args) {
 		gui = new GUI();
 		
-		double[] startConds = {200.0, 30.0, -0.2, 2.0, 150000000000.0};
-		Planet earth = new Planet("Earth", Color.BLUE, (long) (2.0 * Math.pow(10, 18)), 1, 5, startConds);
+		double[] startConds = {100.0, 10.0, 0.2, 5.0, 150000000000.0};
+		Planet earth = new Planet("Earth", Color.BLUE, (long) (2.0 * Math.pow(10,30)), 1, 5, startConds);
 		planets.add(earth);
 		
 		while (true) {
