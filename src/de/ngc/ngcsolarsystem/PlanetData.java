@@ -7,6 +7,7 @@ public class PlanetData {
 	/* Used to check if all necessary attributes are set
 	private Map<Object, Boolean> checkMap = new HashMap<>();
 	*/
+	/**/
 	
 	private String name;
 	private Color color;
