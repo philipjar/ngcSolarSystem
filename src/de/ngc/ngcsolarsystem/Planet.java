@@ -25,27 +25,30 @@ public class Planet {
 	private String name;
 	private Color color;
 	
-	private long centralMass;
-	
-	private long mass;
+	private double centralMass;
 	private double orbitalRadius;
+	
+	private double conversionFactor;
+	
+	private double mass;
 	private double x;
 	private double y;
 	private double velocity_x;
 	private double velocity_y;
 	private double radius;
 	
-	public Planet(String name, Color color, long centralMass, long mass, double radius, double[] startConditions) {
-		this.name = name;
-		this.color = color;
-		this.centralMass = centralMass;
-		this.mass = mass;
-		this.radius = radius;
-		x = startConditions[0];
-		y = startConditions[1];
-		velocity_x = startConditions[2];
-		velocity_y = startConditions[3];
-		orbitalRadius = startConditions[4];
+	public Planet(PlanetData data) {
+		name = data.getName();
+		color = data.getColor();
+		centralMass = data.getCentralStarMass();
+		mass = data.getOwnMass();
+		radius = data.getOwnRadius();
+		x = data.getStartPointX();
+		y = data.getStartPointY();
+		velocity_x = data.getStartVeloX();
+		velocity_y = data.getStartVeloY();
+		orbitalRadius = data.getOrbitalRadius();
+		conversionFactor = data.getConversionFactor();
 	}
 	
 	protected double X() {
@@ -68,8 +71,16 @@ public class Planet {
 		return radius;
 	}
 	
+	protected String getName() {
+		return name;
+	}
+	
 	protected Color getColor() {
 		return color;
+	}
+	
+	protected void setConcersionFactor(double factor) {
+		conversionFactor = factor;
 	}
 	
 	protected void next() {
@@ -89,11 +100,11 @@ public class Planet {
 	
 	protected static class Calc {
 		
-		protected static double nextAccelX(long M, double r, double x) {
+		protected static double nextAccelX(double M, double r, double x) {
 			return ((-gamma * M) / Math.pow(r, 3.0)) * x;
 		}
 		
-		protected static double nextAccelY(long M, double r, double y) {
+		protected static double nextAccelY(double M, double r, double y) {
 			return ((-gamma * M) / Math.pow(r, 3.0)) * y;
 		}
 		
