@@ -17,7 +17,10 @@
 package de.ngc.ngcsolarsystem;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
 public class GUI {
@@ -36,8 +39,7 @@ public class GUI {
 		
 		drawArea.setBackground(Color.BLACK);
 		
-		frame.add(drawArea);
-		
+		frame.getContentPane().add(drawArea);
 		frame.repaint();
 	}
 	
