@@ -33,7 +33,7 @@ public class GUIDrawArea extends JPanel{
 		g.translate(0+350, 0+350);
 		
 		g.setColor(new Color(255, 200, 0));
-		g.fillOval(0, 0, 20, 20);
+		g.fillOval(0-10, 0-10, 20, 20);
 		
 		for(Planet p : SolarSystem.planets){
 		
