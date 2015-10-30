@@ -26,21 +26,32 @@ public class SolarSystem {
 	protected static ArrayList<Planet> planets = new ArrayList<>();
 	
 	/* Calculating the realLife to pixelLife conversion factor here */
-	private static double realLifeDistance = 149.6E6;
+	private static double realLifeDistance = 152.1E6;
 	private static double pixelLifeDistance = 200.0;
 	private static double conversionFactor = pixelLifeDistance / realLifeDistance;
 	
 	public static void main(String[] args) {
 		gui = new GUI();
 		
-		double[] startConds = {100.0, 10.0, -0.2, 0.8, 150000000000.0};
-		Planet earth = new Planet(null); //TODO: add start data
+		PlanetData earthData = new PlanetData();
+		earthData.setName("Earth");
+		earthData.setColor(Color.BLUE);
+		earthData.setConversionFactor(conversionFactor);
+		earthData.setOwnRadius(6378.0E3);
+		earthData.setOwnMass(0.0);
+		earthData.setOrbitalRadius(152.1E6);
+		earthData.setCentralStarMass(2E30);
+		earthData.setStartPointX(200);
+		earthData.setStartPointY(0);
+		earthData.setStartVeloX(0);
+		earthData.setStartVeloY(30.29E3);
+		Planet earth = new Planet(earthData);
 		planets.add(earth);
 		
 		while (true) { 
 			gui.repaintFrame();
 			try {
-				Thread.sleep(10);
+				Thread.sleep(1000);
 			} catch (InterruptedException e) { }
 			
 			for (Planet p : planets) {
