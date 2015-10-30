@@ -28,7 +28,7 @@ public class Planet {
 	private double centralMass;
 	private double orbitalRadius;
 	
-	private double conversionFactor;
+	private double cF;
 	
 	private double mass;
 	private double x;
@@ -38,6 +38,7 @@ public class Planet {
 	private double radius;
 	
 	public Planet(PlanetData data) {
+		cF = data.getConversionFactor();
 		name = data.getName();
 		color = data.getColor();
 		centralMass = data.getCentralStarMass();
@@ -48,7 +49,6 @@ public class Planet {
 		velocity_x = data.getStartVeloX();
 		velocity_y = data.getStartVeloY();
 		orbitalRadius = data.getOrbitalRadius();
-		conversionFactor = data.getConversionFactor();
 	}
 	
 	protected double X() {
@@ -68,7 +68,7 @@ public class Planet {
 	}
 	
 	protected double getRadius() {
-		return radius;
+		return cF * radius;
 	}
 	
 	protected String getName() {
@@ -80,7 +80,7 @@ public class Planet {
 	}
 	
 	protected void setConcersionFactor(double factor) {
-		conversionFactor = factor;
+		cF = factor;
 	}
 	
 	protected void next() {
@@ -91,11 +91,14 @@ public class Planet {
 		x = Calc.nextX(x, velocity_x, 1);
 		y = Calc.nextY(y, velocity_y, 1);
 		orbitalRadius = Calc.nextOrbitalRadius(x, y);
+		
 		System.out.println("----------------------------");
 		System.out.println(String.valueOf(x));
 		System.out.println(String.valueOf(y));
 		System.out.println("----------------------------");
 		System.out.println("\n\n");
+		
+		
 	}
 	
 	protected static class Calc {
