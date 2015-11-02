@@ -37,6 +37,8 @@ public class Planet {
 	private double y;
 	private double veloX;
 	private double veloY;
+	private double accelX;
+	private double accelY;
 	
 	public Planet() {
 		return;
@@ -130,9 +132,17 @@ public class Planet {
 		this.veloY = startVeloY;
 	}
 	
+	protected double getAccelX() {
+		return accelX;
+	}
+	
+	protected double getAccelY() {
+		return accelY;
+	}
+	
 	protected void next() {
-		double accelX = Calc.nextAccelX(centralStarMass, orbitalRadius, x);
-		double accelY = Calc.nextAccelY(centralStarMass, orbitalRadius, y);
+		accelX = Calc.nextAccelX(centralStarMass, orbitalRadius, x);
+		accelY = Calc.nextAccelY(centralStarMass, orbitalRadius, y);
 		veloX = Calc.nextVeloX(veloX, accelX, 1);
 		veloY = Calc.nextVeloY(veloY, accelY, 1);
 		x = Calc.nextX(x, veloX, 1);
