@@ -18,6 +18,8 @@ package de.ngc.ngcsolarsystem;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
 
@@ -27,21 +29,20 @@ public class GUIDrawArea extends JPanel{
 	
 	@Override
 	protected void paintComponent(Graphics g){
-		
 		super.paintComponent(g);
 		
-		g.translate(0+350, 0+350);
-		
-		g.setColor(new Color(255, 200, 0));
-		g.fillOval(0-10, 0-10, 20, 20);
-		
-		for(Planet p : SolarSystem.planets){
-		
-			g.setColor(p.getColor());
-			g.fillOval(((int) (p.X()-p.getOwnRadius())), ((int)(p.Y()-p.getOwnRadius())), (int)p.getOwnRadius()*2, (int)p.getOwnRadius()*2);
-			
-		}
-	
+		paint2D((Graphics2D) g);
 	}
-
+	
+	protected void paint2D(Graphics2D g2) {
+		g2.translate(0+350, 0+350);
+		
+		g2.setColor(Color.YELLOW);
+		g2.fill(new Ellipse2D.Double(0-10, 0-10, 20, 20));
+		
+		g2.setColor(Color.BLUE);
+		for (Planet p : SolarSystem.planets) {
+			g2.fill(new Ellipse2D.Double(p.X()-p.getOwnRadius(), p.Y()-p.getOwnRadius(), p.getOwnRadius()*2, p.getOwnRadius()*2));
+		}
+	}
 }
