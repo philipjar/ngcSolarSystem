@@ -154,7 +154,7 @@ public class Planet {
 		System.out.println(String.valueOf(conversionFactor*y));
 		System.out.println("----------------------------");
 		System.out.println("\n\n"); */
-		System.out.println("Ay___________ " + String.valueOf(accelY));
+		System.out.println("Ay___________ " + String.valueOf(veloY));
 	}
 	
 	protected static class Calc {
@@ -184,7 +184,7 @@ public class Planet {
 		}
 		
 		protected static double nextOrbitalRadius(double x, double y) {
-			return Math.sqrt(Math.pow(x, 2.0) * Math.pow(y, 2.0));
+			return Math.sqrt(Math.pow(x, 2.0) + Math.pow(y, 2.0));
 		}
 	}
 
