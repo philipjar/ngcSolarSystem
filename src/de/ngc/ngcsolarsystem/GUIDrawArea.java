@@ -41,8 +41,8 @@ public class GUIDrawArea extends JPanel{
 		g2.setColor(Color.YELLOW);
 		g2.fill(new Ellipse2D.Double(0-10, 0-10, 20, 20));
 		
-		g2.setColor(Color.BLUE);
 		for (Planet p : SolarSystem.planets) {
+			g2.setColor(p.getColor());
 			g2.fill(new Ellipse2D.Double(p.X()-p.getOwnRadius(), p.Y()-p.getOwnRadius(), p.getOwnRadius()*2, p.getOwnRadius()*2));
 			g2.draw(new Line2D.Double(0.0, 0.0, p.X()-p.getOwnRadius(), p.Y()-p.getOwnRadius()));
 		}
