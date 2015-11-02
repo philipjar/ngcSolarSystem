@@ -133,17 +133,18 @@ public class Planet {
 	protected void next() {
 		double accelX = Calc.nextAccelX(centralStarMass, orbitalRadius, x);
 		double accelY = Calc.nextAccelY(centralStarMass, orbitalRadius, y);
-		veloX = Calc.nextVeloX(veloX, accelX, 1);
-		veloY = Calc.nextVeloY(veloY, accelY, 1);
-		x = Calc.nextX(x, veloX, 1);
-		y = Calc.nextY(y, veloY, 1);
+		veloX = Calc.nextVeloX(veloX, accelX, 10);
+		veloY = Calc.nextVeloY(veloY, accelY, 10);
+		x = Calc.nextX(x, veloX, 10);
+		y = Calc.nextY(y, veloY, 10);
 		orbitalRadius = Calc.nextOrbitalRadius(x, y);
-		
+		/*
 		System.out.println("----------------------------");
-		System.out.println(String.valueOf(x));
-		System.out.println(String.valueOf(y));
+		System.out.println(String.valueOf(conversionFactor*x));
+		System.out.println(String.valueOf(conversionFactor*y));
 		System.out.println("----------------------------");
-		System.out.println("\n\n");
+		System.out.println("\n\n"); */
+		System.out.println("Ay___________ " + String.valueOf(accelY));
 	}
 	
 	protected static class Calc {
