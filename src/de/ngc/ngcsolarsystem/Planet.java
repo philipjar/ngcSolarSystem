@@ -25,71 +25,118 @@ public class Planet {
 	private String name;
 	private Color color;
 	
-	private double centralMass;
+	private double conversionFactor;
+	
+	private double ownRadius;
+	private double ownMass;
+	
 	private double orbitalRadius;
+	private double centralStarMass;
 	
-	private double cF;
-	
-	private double mass;
 	private double x;
 	private double y;
-	private double velocity_x;
-	private double velocity_y;
-	private double radius;
+	private double veloX;
+	private double veloY;
 	
-	public Planet(PlanetData data) {
-		cF = data.getConversionFactor();
-		name = data.getName();
-		color = data.getColor();
-		centralMass = data.getCentralStarMass();
-		mass = data.getOwnMass();
-		radius = data.getOwnRadius();
-		x = data.getStartPointX();
-		y = data.getStartPointY();
-		velocity_x = data.getStartVeloX();
-		velocity_y = data.getStartVeloY();
-		orbitalRadius = data.getOrbitalRadius();
-	}
-	
-	protected double X() {
-		return x;
-	}
-	
-	protected double Y() {
-		return y;
-	}
-	
-	protected double veloX() {
-		return velocity_x;
-	}
-	
-	protected double veloY() {
-		return velocity_y;
-	}
-	
-	protected double getRadius() {
-		return cF * radius;
+	public Planet() {
+		return;
 	}
 	
 	protected String getName() {
 		return name;
 	}
-	
+
+	protected void setName(String name) {
+		this.name = name;
+	}
+
 	protected Color getColor() {
 		return color;
 	}
-	
-	protected void setConcersionFactor(double factor) {
-		cF = factor;
+
+	protected void setColor(Color color) {
+		this.color = color;	
+	}
+
+	public double getConversionFactor() {
+		return conversionFactor;
+	}
+
+	public void setConversionFactor(double conversionFactor) {
+		this.conversionFactor = conversionFactor;
+	}
+
+	protected double getOwnRadius() {
+		return ownRadius;
+	}
+
+	protected void setOwnRadius(double ownRadius) {
+		this.ownRadius = ownRadius;	
+	}
+
+	protected double getOwnMass() {
+		return ownMass;
+	}
+
+	protected void setOwnMass(double ownMass) {
+		this.ownMass = ownMass;	
+	}
+
+	protected double getOrbitalRadius() {
+		return orbitalRadius;
+	}
+
+	protected void setOrbitalRadius(double orbitalRadius) {
+		this.orbitalRadius = orbitalRadius;
+	}
+
+	protected double getCentralStarMass() {
+		return centralStarMass;
+	}
+
+	protected void setCentralStarMass(double centralStarMass) {
+		this.centralStarMass = centralStarMass;
+	}
+
+	protected double X() {
+		return x;
+	}
+
+	protected void setX(double startPointX) {
+		this.x = startPointX;
+	}
+
+	protected double Y() {
+		return y;
+	}
+
+	protected void setY(double startPointY) {
+		this.y = startPointY;
+	}
+
+	protected double veloX() {
+		return veloX;
+	}
+
+	protected void setVeloX(double startVeloX) {
+		this.veloX = startVeloX;
+	}
+
+	protected double veloY() {
+		return veloY;
+	}
+
+	protected void setVeloY(double startVeloY) {
+		this.veloY = startVeloY;
 	}
 	
 	protected void next() {
-		double accelX = Calc.nextAccelX(centralMass, orbitalRadius, x);
-		double accelY = Calc.nextAccelY(centralMass, orbitalRadius, y);
-		velocity_x = Calc.nextVeloX(velocity_x, accelX, 1);
-		velocity_y = Calc.nextVeloY(velocity_y, accelY, 1);
-		x = Calc.nextX(x, velocity_x, 1);
-		y = Calc.nextY(y, velocity_y, 1);
+		double accelX = Calc.nextAccelX(centralStarMass, orbitalRadius, x);
+		double accelY = Calc.nextAccelY(centralStarMass, orbitalRadius, y);
+		veloX = Calc.nextVeloX(veloX, accelX, 1);
+		veloY = Calc.nextVeloY(veloY, accelY, 1);
+		x = Calc.nextX(x, veloX, 1);
+		y = Calc.nextY(y, veloY, 1);
 		orbitalRadius = Calc.nextOrbitalRadius(x, y);
 		
 		System.out.println("----------------------------");
@@ -97,8 +144,6 @@ public class Planet {
 		System.out.println(String.valueOf(y));
 		System.out.println("----------------------------");
 		System.out.println("\n\n");
-		
-		
 	}
 	
 	protected static class Calc {
