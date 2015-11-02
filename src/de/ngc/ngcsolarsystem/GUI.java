@@ -24,6 +24,7 @@ public class GUI {
 	
 	private JFrame frame;
 	private JFrame infoFrame;
+	private JLabel htmlLabel = new JLabel();
 	
 	public GUI(){
 		
@@ -45,18 +46,17 @@ public class GUI {
 		infoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		infoFrame.setSize(300, 110);
 		infoFrame.setResizable(false);
-		
-		JLabel htmlLabel = new JLabel();
-		htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + SolarSystem.planets.get(0).veloX()				//not final!
-						+ "<br>Bahngeschwindigkeit(y): " + SolarSystem.planets.get(0).veloY() 
-						+ "<br>Bahnradius: " + SolarSystem.planets.get(0).getOrbitalRadius() + "</body></html>");
-		
 		infoFrame.setVisible(true);
 		infoFrame.add(htmlLabel);
 	}
 	
 	public void repaintFrame() {
 		frame.repaint();
+		htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + SolarSystem.planets.get(0).veloX()				
+						+ "<br>Bahngeschwindigkeit(y): " + SolarSystem.planets.get(0).veloY() 
+						+ "<br>Bahnradius: " + SolarSystem.planets.get(0).getOrbitalRadius() 
+						+ "</body></html>");
+		
 	}
 
 }
