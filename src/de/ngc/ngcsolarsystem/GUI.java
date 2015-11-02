@@ -47,7 +47,7 @@ public class GUI {
 		infoFrame.setResizable(false);
 		
 		JLabel htmlLabel = new JLabel();
-		htmlLabel.setText("<html><body>Bahngeschwindigkeit: "+" <br>Bahnradius: "+"</body></html>");
+		htmlLabel.setText("<html><body>Bahngeschwindigkeit: " + /*variable + */ " <br>Bahnradius: " + /*variable + */ "</body></html>");
 		
 		infoFrame.setVisible(true);
 		infoFrame.add(htmlLabel);
