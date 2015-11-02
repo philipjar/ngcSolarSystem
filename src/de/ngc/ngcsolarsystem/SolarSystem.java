@@ -39,9 +39,9 @@ public class SolarSystem {
 		earth.setOwnMass(0.0);
 		earth.setOrbitalRadius(152.1E6);
 		earth.setCentralStarMass(2E30);
-		earth.setX(200);
+		earth.setX(152.1E6);
 		earth.setY(0);
-		earth.setVeloX(0);
+		earth.setVeloX(0.0);
 		earth.setVeloY(30.29E3);
 		planets.add(earth);
 		
@@ -50,7 +50,7 @@ public class SolarSystem {
 		while (true) { 
 			gui.repaintFrame();
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1);
 			} catch (InterruptedException e) { }
 			
 			for (Planet p : planets) {
