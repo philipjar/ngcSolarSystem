@@ -44,19 +44,22 @@ public class GUI {
 		//infoframe
 		infoFrame = new JFrame("Bahndaten");
 		infoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		infoFrame.setSize(300, 110);
+		infoFrame.setSize(300, 150);
 		infoFrame.setResizable(false);
 		infoFrame.setVisible(true);
 		infoFrame.add(htmlLabel);
 	}
 	
-	public void repaintFrame() {
+	public void repaintFrames() {
 		frame.repaint();
 		htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + SolarSystem.planets.get(0).veloX()				
 						+ "<br>Bahngeschwindigkeit(y): " + SolarSystem.planets.get(0).veloY() 
-						+ "<br>Bahnradius: " + SolarSystem.planets.get(0).getOrbitalRadius() 
+						+ "<br>"
+						+ "<br>x-Wert: " + SolarSystem.planets.get(0).X()
+						+ "<br>y-Wert: " + SolarSystem.planets.get(0).Y()
+						+ "<br>" 
+						+ "<br>Bahnradius: " + SolarSystem.planets.get(0).getOrbitalRadius()
 						+ "</body></html>");
-		
 	}
 
 }

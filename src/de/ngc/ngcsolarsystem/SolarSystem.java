@@ -48,7 +48,7 @@ public class SolarSystem {
 		gui = new GUI();
 		
 		while (true) { 
-			gui.repaintFrame();
+			gui.repaintFrames();
 			try {
 				Thread.sleep(1);
 			} catch (InterruptedException e) { }
