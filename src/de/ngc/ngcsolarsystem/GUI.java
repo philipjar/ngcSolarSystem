@@ -18,13 +18,16 @@ package de.ngc.ngcsolarsystem;
 
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class GUI {
 	
 	private JFrame frame;
+	private JFrame infoFrame;
 	
 	public GUI(){
 		
+		//mainframe
 		frame = new JFrame("Solar System");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(700, 700);
@@ -36,6 +39,18 @@ public class GUI {
 		
 		frame.getContentPane().add(drawArea);
 		frame.repaint();
+		
+		//infoframe
+		infoFrame = new JFrame("Bahndaten");
+		infoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		infoFrame.setSize(300, 110);
+		infoFrame.setResizable(false);
+		
+		JLabel htmlLabel = new JLabel();
+		htmlLabel.setText("<html><body>Bahngeschwindigkeit: "+" <br>Bahnradius: "+"</body></html>");
+		
+		infoFrame.setVisible(true);
+		infoFrame.add(htmlLabel);
 	}
 	
 	public void repaintFrame() {
