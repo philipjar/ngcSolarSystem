@@ -31,8 +31,6 @@ public class SolarSystem {
 	private static double conversionFactor = pixelLifeDistance / realLifeDistance;
 	
 	public static void main(String[] args) {
-		gui = new GUI();
-		
 		Planet earth = new Planet();
 		earth.setName("Earth");
 		earth.setColor(Color.BLUE);
@@ -47,10 +45,12 @@ public class SolarSystem {
 		earth.setVeloY(30.29E3);
 		planets.add(earth);
 		
+		gui = new GUI();
+		
 		while (true) { 
 			gui.repaintFrame();
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 			} catch (InterruptedException e) { }
 			
 			for (Planet p : planets) {
