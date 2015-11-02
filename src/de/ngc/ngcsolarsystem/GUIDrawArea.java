@@ -38,7 +38,7 @@ public class GUIDrawArea extends JPanel{
 		for(Planet p : SolarSystem.planets){
 		
 			g.setColor(p.getColor());
-			g.fillOval(((int) (p.X()-p.getRadius())), ((int)(p.Y()-p.getRadius())), (int)p.getRadius()*2, (int)p.getRadius()*2);
+			g.fillOval(((int) (p.X()-p.getOwnRadius())), ((int)(p.Y()-p.getOwnRadius())), (int)p.getOwnRadius()*2, (int)p.getOwnRadius()*2);
 			
 		}
 	
