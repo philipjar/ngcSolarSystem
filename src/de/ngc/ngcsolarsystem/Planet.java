@@ -67,7 +67,7 @@ public class Planet {
 	}
 
 	protected double getOwnRadius() {
-		return ownRadius;
+		return conversionFactor * ownRadius;
 	}
 
 	protected void setOwnRadius(double ownRadius) {
@@ -99,7 +99,7 @@ public class Planet {
 	}
 
 	protected double X() {
-		return x;
+		return conversionFactor * x;
 	}
 
 	protected void setX(double startPointX) {
@@ -107,7 +107,7 @@ public class Planet {
 	}
 
 	protected double Y() {
-		return y;
+		return conversionFactor * y;
 	}
 
 	protected void setY(double startPointY) {
