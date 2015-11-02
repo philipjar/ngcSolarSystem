@@ -37,12 +37,12 @@ public class SolarSystem {
 		earth.setConversionFactor(conversionFactor);
 		earth.setOwnRadius(6378.0E3);
 		earth.setOwnMass(0.0);
-		earth.setOrbitalRadius(152.1E6);
-		earth.setCentralStarMass(2E30);
-		earth.setX(152.1E6);
+		earth.setOrbitalRadius(147.1E6);
+		earth.setCentralStarMass(1.99E30);
+		earth.setX(147.1E6);
 		earth.setY(0);
 		earth.setVeloX(0.0);
-		earth.setVeloY(30.29E3);
+		earth.setVeloY(29.29E3);
 		planets.add(earth);
 		
 		gui = new GUI();
