@@ -33,19 +33,18 @@ public class SolarSystem {
 	public static void main(String[] args) {
 		gui = new GUI();
 		
-		PlanetData earthData = new PlanetData();
-		earthData.setName("Earth");
-		earthData.setColor(Color.BLUE);
-		earthData.setConversionFactor(conversionFactor);
-		earthData.setOwnRadius(6378.0E3);
-		earthData.setOwnMass(0.0);
-		earthData.setOrbitalRadius(152.1E6);
-		earthData.setCentralStarMass(2E30);
-		earthData.setStartPointX(200);
-		earthData.setStartPointY(0);
-		earthData.setStartVeloX(0);
-		earthData.setStartVeloY(30.29E3);
-		Planet earth = new Planet(earthData);
+		Planet earth = new Planet();
+		earth.setName("Earth");
+		earth.setColor(Color.BLUE);
+		earth.setConversionFactor(conversionFactor);
+		earth.setOwnRadius(6378.0E3);
+		earth.setOwnMass(0.0);
+		earth.setOrbitalRadius(152.1E6);
+		earth.setCentralStarMass(2E30);
+		earth.setX(200);
+		earth.setY(0);
+		earth.setVeloX(0);
+		earth.setVeloY(30.29E3);
 		planets.add(earth);
 		
 		while (true) { 
