@@ -153,8 +153,9 @@ public class Planet {
 		System.out.println(String.valueOf(conversionFactor*x));
 		System.out.println(String.valueOf(conversionFactor*y));
 		System.out.println("----------------------------");
-		System.out.println("\n\n"); */
+		System.out.println("\n\n"); 
 		System.out.println("Ay___________ " + String.valueOf(veloY));
+		*/
 	}
 	
 	protected static class Calc {
