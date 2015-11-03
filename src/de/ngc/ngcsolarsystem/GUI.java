@@ -18,9 +18,8 @@ package de.ngc.ngcsolarsystem;
 
 import java.awt.Color;
 import java.awt.Point;
+import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -46,23 +45,12 @@ public class GUI {
 		frame.repaint();
 		
 		//frame-move listener to update the location of the second infoFrame
-		frame.addComponentListener(new ComponentListener() {
-			
-			@Override
-			public void componentMoved(ComponentEvent e) {
+		frame.addComponentListener(new ComponentAdapter() {
+			public void componentMoved(ComponentEvent e){
 				infoFrame.setLocation(new Point(frame.getLocation().x + 708, frame.getLocation().y+25));
 			}
-
-			@Override
-			public void componentHidden(ComponentEvent e) {}
-
-			@Override
-			public void componentResized(ComponentEvent e) {}
-
-			@Override
-			public void componentShown(ComponentEvent e) {}
-			
 		});
+		
 		//infoFrame
 		infoFrame = new JFrame("Bahndaten");
 		infoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
