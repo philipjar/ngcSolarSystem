@@ -44,7 +44,7 @@ public class GUI {
 		frame.getContentPane().add(drawArea);
 		frame.repaint();
 		
-		//frame-move listener to update the location of the second infoFrame
+		//frame-move listener to update the location of the second infoFrame 
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentMoved(ComponentEvent e){
 				infoFrame.setLocation(new Point(frame.getLocation().x + 708, frame.getLocation().y+25));
