@@ -143,10 +143,10 @@ public class Planet {
 	protected void next() {
 		accelX = Calc.nextAccelX(centralStarMass, orbitalRadius, x);
 		accelY = Calc.nextAccelY(centralStarMass, orbitalRadius, y);
-		veloX = Calc.nextVeloX(veloX, accelX, 1);
-		veloY = Calc.nextVeloY(veloY, accelY, 1);
-		x = Calc.nextX(x, veloX, 1);
-		y = Calc.nextY(y, veloY, 1);
+		veloX = Calc.nextVeloX(veloX, accelX, 10000);
+		veloY = Calc.nextVeloY(veloY, accelY, 10000);
+		x = Calc.nextX(x, veloX, 10000);
+		y = Calc.nextY(y, veloY, 10000);
 		orbitalRadius = Calc.nextOrbitalRadius(x, y);
 		
 	}
