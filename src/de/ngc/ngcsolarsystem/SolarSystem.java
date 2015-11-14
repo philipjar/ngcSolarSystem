@@ -50,7 +50,7 @@ public class SolarSystem {
 		while (true) { 
 			gui.repaintFrames();
 			try {
-				Thread.sleep(1);
+				Thread.sleep(10);
 			} catch (InterruptedException e) { }
 			
 			for (Planet p : planets) {
