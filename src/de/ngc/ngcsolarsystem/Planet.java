@@ -17,6 +17,7 @@
 package de.ngc.ngcsolarsystem;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class Planet {
 	
@@ -32,6 +33,7 @@ public class Planet {
 	
 	private double orbitalRadius;
 	private double centralStarMass;
+	private ArrayList<double[]> lastPoints = new ArrayList<>(); 
 	
 	private double x;
 	private double y;
@@ -99,6 +101,15 @@ public class Planet {
 	protected void setCentralStarMass(double centralStarMass) {
 		this.centralStarMass = centralStarMass;
 	}
+	
+	protected ArrayList<double[]> getLastPoints(){
+		ArrayList<double[]> convertedList = new ArrayList<>();
+		for (double[] array : lastPoints) {
+			double[] converted = {conversionFactor * array[0], conversionFactor * array[1]};
+			convertedList.add(converted);
+		}
+		return convertedList;
+	}
 
 	protected double X() {
 		return conversionFactor * x;
@@ -141,6 +152,13 @@ public class Planet {
 	}
 	
 	protected void next() {
+		double[] oldLoc = {x, y};
+		/* Don't let the lastPoints List become too big */
+		if (lastPoints.size() > 1000)
+			lastPoints.remove(0);
+		if (!lastPoints.contains(oldLoc))
+			lastPoints.add(oldLoc);
+		
 		accelX = Calc.nextAccelX(centralStarMass, orbitalRadius, x);
 		accelY = Calc.nextAccelY(centralStarMass, orbitalRadius, y);
 		veloX = Calc.nextVeloX(veloX, accelX, 10000);
@@ -148,7 +166,6 @@ public class Planet {
 		x = Calc.nextX(x, veloX, 10000);
 		y = Calc.nextY(y, veloY, 10000);
 		orbitalRadius = Calc.nextOrbitalRadius(x, y);
-		
 	}
 	
 	protected static class Calc {
