@@ -123,7 +123,7 @@ public class Planet {
 	protected void setVeloX(double startVeloX) {
 		this.veloX = startVeloX;
 	}
-
+	
 	protected double veloY() {
 		return veloY;
 	}
@@ -148,14 +148,7 @@ public class Planet {
 		x = Calc.nextX(x, veloX, 1);
 		y = Calc.nextY(y, veloY, 1);
 		orbitalRadius = Calc.nextOrbitalRadius(x, y);
-		/*
-		System.out.println("----------------------------");
-		System.out.println(String.valueOf(conversionFactor*x));
-		System.out.println(String.valueOf(conversionFactor*y));
-		System.out.println("----------------------------");
-		System.out.println("\n\n"); 
-		System.out.println("Ay___________ " + String.valueOf(veloY));
-		*/
+		
 	}
 	
 	protected static class Calc {
