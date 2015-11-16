@@ -64,17 +64,25 @@ public class GUI {
 	
 	public void repaintFrames() {
 		frame.repaint();
-		htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + SolarSystem.planets.get(0).veloX()				
-						+ "<br>Bahngeschwindigkeit(y): " + SolarSystem.planets.get(0).veloY() 
-						+ "<br>"
-						+ "<br>Bahnbeschleunigung(x): " + SolarSystem.planets.get(0).getAccelX()
-						+ "<br>Bahnbeschleunigung(y): " + SolarSystem.planets.get(0).getAccelY()
-						+ "<br>"
-						+ "<br>x-Wert: " + SolarSystem.planets.get(0).X()
-						+ "<br>y-Wert: " + SolarSystem.planets.get(0).Y()
-						+ "<br>" 
-						+ "<br>Bahnradius: " + SolarSystem.planets.get(0).getOrbitalRadius()
-						+ "</body></html>");
+		try {
+			htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + SolarSystem.planets.get(0).veloX()				
+							+ "<br>Bahngeschwindigkeit(y): " + SolarSystem.planets.get(0).veloY() 
+							+ "<br>"
+							+ "<br>Bahnbeschleunigung(x): " + SolarSystem.planets.get(0).getAccelX()
+							+ "<br>Bahnbeschleunigung(y): " + SolarSystem.planets.get(0).getAccelY()
+							+ "<br>"
+							+ "<br>x-Wert: " + SolarSystem.planets.get(0).X()
+							+ "<br>y-Wert: " + SolarSystem.planets.get(0).Y()
+							+ "<br>" 
+							+ "<br>Bahnradius: " + SolarSystem.planets.get(0).getOrbitalRadius()
+							+ "</body></html>");
+		} catch (NullPointerException e) {
+			/* This try-catch block is a temporary workaround.
+			 * A NullPointerException sometimes shows up and we don*t know why yet.
+			 * Until this is fixed this workaround will prevent the JVM from aborting execution.
+			 */
+			return;
+		}
 		
 	}
 
