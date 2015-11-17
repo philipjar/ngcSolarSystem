@@ -72,16 +72,17 @@ public class GUI {
 	public void repaintFrames() {
 		frame.repaint();
 		try {
-			htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + dF.format(SolarSystem.planets.get(0).veloX())				
-							+ "<br>Bahngeschwindigkeit(y): " + dF.format(SolarSystem.planets.get(0).veloY())
+			Planet p = SolarSystem.planets.get(0);
+			htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + dF.format(p.veloX())				
+							+ "<br>Bahngeschwindigkeit(y): " + dF.format(p.veloY())
 							+ "<br>"
-							+ "<br>Bahnbeschleunigung(x): " + dF.format(SolarSystem.planets.get(0).getAccelX())
-							+ "<br>Bahnbeschleunigung(y): " + dF.format(SolarSystem.planets.get(0).getAccelY())
+							+ "<br>Bahnbeschleunigung(x): " + dF.format(p.getAccelX())
+							+ "<br>Bahnbeschleunigung(y): " + dF.format(p.getAccelY())
 							+ "<br>"
-							+ "<br>x-Wert: " + dF.format(SolarSystem.planets.get(0).X())
-							+ "<br>y-Wert: " + dF.format(SolarSystem.planets.get(0).Y())
+							+ "<br>x-Wert: " + dF.format(p.X())
+							+ "<br>y-Wert: " + dF.format(p.Y())
 							+ "<br>" 
-							+ "<br>Bahnradius: " + dF.format(SolarSystem.planets.get(0).getOrbitalRadius())
+							+ "<br>Bahnradius: " + dF.format(p.getOrbitalRadius())
 							+ "</body></html>");
 		} catch (NullPointerException e) {
 			/* This try-catch block is a temporary workaround.
