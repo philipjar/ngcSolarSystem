@@ -16,7 +16,10 @@
  */
 package de.ngc.ngcsolarsystem;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Point;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -24,6 +27,8 @@ import java.text.DecimalFormat;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 public class GUI {
 	
@@ -37,20 +42,26 @@ public class GUI {
 		//mainFrame
 		frame = new JFrame("Solar System");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(700, 700);
+		frame.setSize(750, 700);
 		frame.setVisible(true);
 		frame.setResizable(false);
+		frame.setLayout(new BorderLayout(0, 0));
 		
 		GUIDrawArea drawArea = new GUIDrawArea(); 
 		drawArea.setBackground(Color.BLACK);
+		drawArea.setPreferredSize(new Dimension(700, 700));
+		frame.add(drawArea, BorderLayout.LINE_START);
 		
-		frame.getContentPane().add(drawArea);
-		frame.repaint();
+		GUIButtons sideButtons = new GUIButtons();
+		sideButtons.setPreferredSize(new Dimension(50, 700));
+		frame.add(sideButtons, BorderLayout.LINE_END);
+		
+		frame.pack();
 		
 		//frame-move listener to update the location of the second infoFrame 
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentMoved(ComponentEvent e){
-				infoFrame.setLocation(new Point(frame.getLocation().x + 708, frame.getLocation().y+25));
+				infoFrame.setLocation(new Point(frame.getLocation().x + 758, frame.getLocation().y+25));
 			}
 		});
 		
