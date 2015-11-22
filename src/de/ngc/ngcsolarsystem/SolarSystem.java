@@ -26,10 +26,14 @@ public class SolarSystem {
 	
 	protected static ArrayList<Planet> planets = new ArrayList<>();
 	
+	private static double sunSize = 40.0;
+	
 	/* Calculating the realLife to pixelLife conversion factor here */
 	private static double realLifeDistance = 147.1E9;
 	private static double pixelLifeDistance = 200.0;
 	private static double conversionFactor = pixelLifeDistance / realLifeDistance;
+	private static double pixelLifeZoomDelta = 10.0;
+	private static double pixelLifeZoomMin = 0.5;
 	
 	public static void main(String[] args) {
 		Planet earth = new Planet();
@@ -59,6 +63,31 @@ public class SolarSystem {
 			for (Planet p : planets) {
 				p.next();
 			}
+		}
+	}
+	
+	protected static double getSunSize() {
+		return sunSize;
+	}
+	
+	protected static void zoomIn() {
+		pixelLifeDistance += pixelLifeZoomDelta;
+		sunSize += pixelLifeZoomDelta / 2.0;
+		updateConversionFactorToPlanets();
+	}
+	
+	protected static void zoomOut() {
+		if (pixelLifeDistance < pixelLifeZoomMin)
+			return;
+		pixelLifeDistance -= pixelLifeZoomDelta;
+		sunSize -= pixelLifeZoomDelta / 2.0;
+		updateConversionFactorToPlanets();
+	}
+	
+	private static void updateConversionFactorToPlanets() {
+		conversionFactor = pixelLifeDistance / realLifeDistance;
+		for (Planet p : planets) {
+			p.setConversionFactor(conversionFactor);
 		}
 	}
 

@@ -21,7 +21,11 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -44,6 +48,13 @@ public class GUIButtons extends JPanel {
 		buttonZoomIn.setFont(font);
 		buttonZoomIn.setPreferredSize(new Dimension(40, 40));
 		buttonZoomIn.setMargin(new Insets(0, 0, 0, 0));
+		buttonZoomIn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("ZoomIn");
+				SolarSystem.zoomIn();	
+			}
+		});
 		add(buttonZoomIn);
 		
 		buttonZoomOut = new JButton();
@@ -51,6 +62,13 @@ public class GUIButtons extends JPanel {
 		buttonZoomOut.setFont(font);
 		buttonZoomOut.setPreferredSize(new Dimension(40, 40));
 		buttonZoomOut.setMargin(new Insets(0, 0, 0, 0));
+		buttonZoomOut.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SolarSystem.zoomOut();	
+			}
+		});
+		add(buttonZoomIn);
 		add(buttonZoomOut);
 		
 		buttonInfo = new JButton();
