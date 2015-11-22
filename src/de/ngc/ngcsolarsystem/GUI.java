@@ -40,7 +40,7 @@ public class GUI {
 	public GUI(){
 		
 		//mainFrame
-		frame = new JFrame("Solar System");
+		frame = new JFrame("Solar System"); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(750, 700);
 		frame.setVisible(true);
