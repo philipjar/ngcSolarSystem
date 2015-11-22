@@ -24,8 +24,8 @@ import javax.swing.JPanel;
 
 public class GUIDrawArea extends JPanel{
 
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 3314874896779099613L;
+
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
