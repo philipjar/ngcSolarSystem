@@ -19,7 +19,6 @@ package de.ngc.ngcsolarsystem;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Point;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -27,8 +26,6 @@ import java.text.DecimalFormat;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 public class GUI {
 	
