@@ -26,7 +26,7 @@ public class SolarSystem {
 	
 	protected static ArrayList<Planet> planets = new ArrayList<>();
 	
-	private static double sunSize = 40.0;
+	private static double sunSize = 13.014E8;
 	
 	/* Calculating the realLife to pixelLife conversion factor here */
 	private static double realLifeDistance = 147.1E9;
@@ -67,7 +67,7 @@ public class SolarSystem {
 	}
 	
 	protected static double getSunSize() {
-		return sunSize;
+		return conversionFactor * 20 * sunSize;
 	}
 	
 	protected static void zoomIn() {
