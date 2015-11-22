@@ -33,6 +33,7 @@ public class GUIButtons extends JPanel {
 	JButton buttonZoomIn;
 	JButton buttonZoomOut;
 	JButton buttonInfo;
+	JButton buttonNewPlanet;
 	
 	public GUIButtons() {
 		setBackground(Color.DARK_GRAY);
@@ -48,7 +49,6 @@ public class GUIButtons extends JPanel {
 		buttonZoomIn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("ZoomIn");
 				SolarSystem.zoomIn();	
 			}
 		});
@@ -74,6 +74,12 @@ public class GUIButtons extends JPanel {
 		buttonInfo.setMargin(new Insets(0, 0, 0, 0));
 		add(buttonInfo);
 		
+		buttonNewPlanet = new JButton();
+		buttonNewPlanet.setText("nP");
+		buttonNewPlanet.setFont(font);
+		buttonNewPlanet.setPreferredSize(new Dimension(40, 40));
+		buttonNewPlanet.setMargin(new Insets(0, 0, 0, 0));
+		add(buttonNewPlanet);
 	}
 
 }
