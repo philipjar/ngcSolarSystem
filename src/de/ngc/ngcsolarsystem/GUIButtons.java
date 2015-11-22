@@ -13,7 +13,7 @@ public class GUIButtons extends JPanel {
 	JButton button;
 	
 	public GUIButtons() {
-		setBackground(Color.GRAY);
+		setBackground(Color.DARK_GRAY);
 		button = new JButton("+");
 		button.setPreferredSize(new Dimension(40, 40));
 		add(button);
