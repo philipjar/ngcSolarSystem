@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class SolarSystem {
 	
 	private static GUI gui;
+	private static GUIWindows windows;
 	
 	protected static ArrayList<Planet> planets = new ArrayList<>();
 	
@@ -46,9 +47,11 @@ public class SolarSystem {
 		planets.add(earth);
 		
 		gui = new GUI();
+		windows = new GUIWindows();
 		
 		while (true) { 
-			gui.repaintFrames();
+			gui.repaintFrame();
+			windows.repaintFrame();
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) { }
