@@ -19,21 +19,12 @@ package de.ngc.ngcsolarsystem;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.text.DecimalFormat;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class GUI {
 	
 	private JFrame frame;
-	private JFrame infoFrame;
-	private JLabel htmlLabel;
-	private DecimalFormat dF;
-	
+
 	public GUI(){
 		
 		//mainFrame
@@ -54,53 +45,12 @@ public class GUI {
 		frame.add(sideButtons, BorderLayout.LINE_END);
 		
 		frame.pack();
-		
-		//frame-move listener to update the location of the second infoFrame 
-		frame.addComponentListener(new ComponentAdapter() {
-			public void componentMoved(ComponentEvent e){
-				infoFrame.setLocation(new Point(frame.getLocation().x + 758, frame.getLocation().y+25));
-			}
-		});
-		
-		//infoFrame
-		infoFrame = new JFrame("Bahndaten");
-		infoFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		infoFrame.setSize(300, 200);
-		infoFrame.setUndecorated(true);
-		infoFrame.setResizable(false);
-		infoFrame.setVisible(true);
-		
-		htmlLabel = new JLabel();
-		dF = new DecimalFormat("00.0000E0");
-		
-		infoFrame.add(htmlLabel);
 	
 	}
 	
-	public void repaintFrames() {
+	public void repaintFrame() {
+		
 		frame.repaint();
-		try {
-			Planet p = SolarSystem.planets.get(0);
-			htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + dF.format(p.veloX())				
-							+ "<br>Bahngeschwindigkeit(y): " + dF.format(p.veloY())
-							+ "<br>"
-							+ "<br>Bahnbeschleunigung(x): " + dF.format(p.getAccelX())
-							+ "<br>Bahnbeschleunigung(y): " + dF.format(p.getAccelY())
-							+ "<br>"
-							+ "<br>x-Wert: " + dF.format(p.X())
-							+ "<br>y-Wert: " + dF.format(p.Y())
-							+ "<br>" 
-							+ "<br>Bahnradius: " + dF.format(p.getOrbitalRadius())
-							+ "</body></html>");
-		} catch (NullPointerException e) {
-			/* This try-catch block is a temporary workaround.
-			 * A NullPointerException sometimes shows up and we don*t know why yet.
-			 * Until this is fixed this workaround will prevent the JVM from aborting execution.
-			 */
-			System.err.println("The NullPointer came back to say Hi...");
-			e.printStackTrace();
-			return;
-		}
 		
 	}
 
