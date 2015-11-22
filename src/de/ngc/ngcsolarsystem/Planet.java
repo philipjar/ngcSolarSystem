@@ -104,9 +104,11 @@ public class Planet {
 	
 	protected ArrayList<double[]> getLastPoints(){
 		ArrayList<double[]> convertedList = new ArrayList<>();
-		for (double[] array : lastPoints) {
-			double[] converted = {conversionFactor * array[0], conversionFactor * array[1]};
-			convertedList.add(converted);
+		synchronized (lastPoints) {
+			for (double[] array : lastPoints) {
+				double[] converted = {conversionFactor * array[0], conversionFactor * array[1]};
+				convertedList.add(converted);
+			}
 		}
 		return convertedList;
 	}
@@ -153,11 +155,15 @@ public class Planet {
 	
 	protected void next() {
 		double[] oldLoc = {x, y};
-		/* Don't let the lastPoints List become too big */
-		if (lastPoints.size() > 1000)
-			lastPoints.remove(0);
-		if (!lastPoints.contains(oldLoc))
-			lastPoints.add(oldLoc);
+		synchronized (lastPoints) {
+			/* Don't let the lastPoints List become too big as 
+			 * this will slow down the Planet.
+			 */
+			if (lastPoints.size() > 2000)
+				lastPoints.remove(0);
+			if (!lastPoints.contains(oldLoc))
+				lastPoints.add(oldLoc);
+		}
 		
 		accelX = Calc.nextAccelX(centralStarMass, orbitalRadius, x);
 		accelY = Calc.nextAccelY(centralStarMass, orbitalRadius, y);

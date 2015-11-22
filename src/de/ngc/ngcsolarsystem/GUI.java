@@ -20,6 +20,8 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.text.DecimalFormat;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -27,7 +29,8 @@ public class GUI {
 	
 	private JFrame frame;
 	private JFrame infoFrame;
-	private JLabel htmlLabel = new JLabel();
+	private JLabel htmlLabel;
+	private DecimalFormat dF;
 	
 	public GUI(){
 		
@@ -58,23 +61,38 @@ public class GUI {
 		infoFrame.setUndecorated(true);
 		infoFrame.setResizable(false);
 		infoFrame.setVisible(true);
+		
+		htmlLabel = new JLabel();
+		dF = new DecimalFormat("00.0000E0");
+		
 		infoFrame.add(htmlLabel);
 	
 	}
 	
 	public void repaintFrames() {
 		frame.repaint();
-		htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + SolarSystem.planets.get(0).veloX()				
-						+ "<br>Bahngeschwindigkeit(y): " + SolarSystem.planets.get(0).veloY() 
-						+ "<br>"
-						+ "<br>Bahnbeschleunigung(x): " + SolarSystem.planets.get(0).getAccelX()
-						+ "<br>Bahnbeschleunigung(y): " + SolarSystem.planets.get(0).getAccelY()
-						+ "<br>"
-						+ "<br>x-Wert: " + SolarSystem.planets.get(0).X()
-						+ "<br>y-Wert: " + SolarSystem.planets.get(0).Y()
-						+ "<br>" 
-						+ "<br>Bahnradius: " + SolarSystem.planets.get(0).getOrbitalRadius()
-						+ "</body></html>");
+		try {
+			Planet p = SolarSystem.planets.get(0);
+			htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + dF.format(p.veloX())				
+							+ "<br>Bahngeschwindigkeit(y): " + dF.format(p.veloY())
+							+ "<br>"
+							+ "<br>Bahnbeschleunigung(x): " + dF.format(p.getAccelX())
+							+ "<br>Bahnbeschleunigung(y): " + dF.format(p.getAccelY())
+							+ "<br>"
+							+ "<br>x-Wert: " + dF.format(p.X())
+							+ "<br>y-Wert: " + dF.format(p.Y())
+							+ "<br>" 
+							+ "<br>Bahnradius: " + dF.format(p.getOrbitalRadius())
+							+ "</body></html>");
+		} catch (NullPointerException e) {
+			/* This try-catch block is a temporary workaround.
+			 * A NullPointerException sometimes shows up and we don*t know why yet.
+			 * Until this is fixed this workaround will prevent the JVM from aborting execution.
+			 */
+			System.err.println("The NullPointer came back to say Hi...");
+			e.printStackTrace();
+			return;
+		}
 		
 	}
 
