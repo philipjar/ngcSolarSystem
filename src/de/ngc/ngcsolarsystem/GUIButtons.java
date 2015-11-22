@@ -65,7 +65,6 @@ public class GUIButtons extends JPanel {
 				SolarSystem.zoomOut();	
 			}
 		});
-		add(buttonZoomIn);
 		add(buttonZoomOut);
 		
 		buttonInfo = new JButton();
