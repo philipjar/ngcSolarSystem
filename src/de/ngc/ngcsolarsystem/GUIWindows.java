@@ -54,7 +54,7 @@ public class GUIWindows implements RepaintCallListener {
 	public GUIWindows(){
 		SolarSystem.addRepaintCallListener(this);
 		
-		infoFrame = new JFrame("Bahndaten");
+		infoFrame = new JFrame("Orbit data");
 		
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		infoFrame.setSize(300, 130);
