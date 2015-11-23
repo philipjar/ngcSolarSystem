@@ -120,13 +120,14 @@ public class GUIWindows implements RepaintCallListener {
 		Planet planet = new Planet();
 		planet.setName(planetName.getText());
 		planet.setColor(Color.decode(planetColor.getText()));
-		planet.setOwnRadius(0.0); /* Not used */
+		planet.setOwnRadius(6378E6); /* Standard size (Earth radius) */
 		planet.setOwnMass(0.0); /* Not used */
 		planet.setOrbitalRadius(Double.parseDouble(planetRadius.getText()));
 		planet.setX(Double.parseDouble(planetRadius.getText()));
 		planet.setY(0.0);
 		planet.setVeloX(Double.parseDouble(planetVeloX.getText()));
 		planet.setVeloY(Double.parseDouble(planetVeloY.getText()));
+		SolarSystem.addPlanet(planet);
 	}
 	
 	@Override
