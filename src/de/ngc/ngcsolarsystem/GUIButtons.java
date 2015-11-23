@@ -36,6 +36,7 @@ public class GUIButtons extends JPanel {
 	JButton buttonZoomOut;
 	JButton buttonInfo;
 	JButton buttonNewPlanet;
+	JButton buttonDeletePlanet;
 	
 	public GUIButtons() {
 		setBackground(Color.DARK_GRAY);
@@ -96,6 +97,19 @@ public class GUIButtons extends JPanel {
 			}
 		});
 		add(buttonNewPlanet);
+		
+		buttonDeletePlanet = new JButton();
+		buttonDeletePlanet.setText("rP");
+		buttonDeletePlanet.setFont(font);
+		buttonDeletePlanet.setPreferredSize(new Dimension(40, 40));
+		buttonDeletePlanet.setMargin(new Insets(0, 0, 0, 0));
+		buttonDeletePlanet.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				windows.toggleDeleteFrame();
+			}
+		});
+		add(buttonDeletePlanet);
 	}
 
 }
