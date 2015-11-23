@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
 
 
@@ -150,6 +151,7 @@ public class GUIWindows implements RepaintCallListener {
 		deleteFrame = new JFrame("remove Planet");
 		deleteFrame.setSize(300, 200);
 		deleteFrame.setLayout(new BoxLayout(deleteFrame.getContentPane(), BoxLayout.Y_AXIS));
+		deleteFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		deleteListModel = new DefaultListModel<String>();
 		for (Planet p : SolarSystem.planets) {
 			String toAdd = String.valueOf(SolarSystem.planets.indexOf(p)) + " " + p.getName();
@@ -169,6 +171,12 @@ public class GUIWindows implements RepaintCallListener {
 		});
 		deleteFrame.add(new JScrollPane(deleteList));
 		deleteFrame.add(deleteButton);
+		deleteFrame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				toggleDeleteFrame();
+			}
+		});
 		deleteFrame.setVisible(deleteFrameVisible);
 	}
 	
