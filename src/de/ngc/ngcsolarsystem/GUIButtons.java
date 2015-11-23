@@ -30,6 +30,8 @@ public class GUIButtons extends JPanel {
 	
 	private static final long serialVersionUID = -2773637082067263110L;
 	
+	GUIWindows windows;
+	
 	JButton buttonZoomIn;
 	JButton buttonZoomOut;
 	JButton buttonInfo;
@@ -38,6 +40,8 @@ public class GUIButtons extends JPanel {
 	public GUIButtons() {
 		setBackground(Color.DARK_GRAY);
 		setLayout(new FlowLayout());
+		
+		windows = new GUIWindows();
 		
 		Font font = new Font("Arial", Font.PLAIN, 20);
 		
@@ -85,6 +89,12 @@ public class GUIButtons extends JPanel {
 		buttonNewPlanet.setFont(font);
 		buttonNewPlanet.setPreferredSize(new Dimension(40, 40));
 		buttonNewPlanet.setMargin(new Insets(0, 0, 0, 0));
+		buttonNewPlanet.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				windows.toggleNewPlanetFrame();	
+			}
+		});
 		add(buttonNewPlanet);
 	}
 
