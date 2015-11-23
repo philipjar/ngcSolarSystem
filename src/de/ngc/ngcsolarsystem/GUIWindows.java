@@ -17,6 +17,7 @@
 package de.ngc.ngcsolarsystem;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
@@ -25,6 +26,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
+
 import java.text.Format;
 import java.text.NumberFormat;
 
@@ -50,6 +52,10 @@ public class GUIWindows implements RepaintCallListener {
 	JButton planetCancelButton;
 	JButton planetOkButton;
 	boolean newPlanetFrameVisible = false;
+	
+	JFrame errorFrame;
+	JLabel errorLabel;
+	JButton errorOkButton;
 	
 	public GUIWindows(){
 		SolarSystem.addRepaintCallListener(this);
@@ -106,6 +112,20 @@ public class GUIWindows implements RepaintCallListener {
 		});
 		
 		newPlanetFrame.setVisible(false);
+		
+		errorFrame = new JFrame("Error <3");
+		errorFrame.setSize(400, 80);
+		errorFrame.setLayout(new FlowLayout());
+		errorLabel = new JLabel();
+		errorFrame.add(errorLabel);
+		errorFrame.add(errorOkButton = new JButton("Ok"));
+		errorOkButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				errorFrame.setVisible(false);
+			}
+		});
+		errorFrame.setVisible(false);
 	}
 	
 	protected void toggleInfoFrame(){
@@ -116,18 +136,27 @@ public class GUIWindows implements RepaintCallListener {
 		newPlanetFrame.setVisible(newPlanetFrameVisible = !newPlanetFrameVisible);
 	}
 	
+	protected void error(String msg) {
+		errorLabel.setText(msg);
+		errorFrame.setVisible(true);
+	}
+	
 	private void submitPlanet() {
-		Planet planet = new Planet();
-		planet.setName(planetName.getText());
-		planet.setColor(Color.decode(planetColor.getText()));
-		planet.setOwnRadius(6378E6); /* Standard size (Earth radius) */
-		planet.setOwnMass(0.0); /* Not used */
-		planet.setOrbitalRadius(Double.parseDouble(planetRadius.getText()));
-		planet.setX(Double.parseDouble(planetRadius.getText()));
-		planet.setY(0.0);
-		planet.setVeloX(Double.parseDouble(planetVeloX.getText()));
-		planet.setVeloY(Double.parseDouble(planetVeloY.getText()));
-		SolarSystem.addPlanet(planet);
+		try {
+			Planet planet = new Planet();
+			planet.setName(planetName.getText());
+			planet.setColor(Color.decode(planetColor.getText()));
+			planet.setOwnRadius(6378E6); /* Standard size (Earth radius) */
+			planet.setOwnMass(0.0); /* Not used */
+			planet.setOrbitalRadius(Double.parseDouble(planetRadius.getText()));
+			planet.setX(Double.parseDouble(planetRadius.getText()));
+			planet.setY(0.0);
+			planet.setVeloX(Double.parseDouble(planetVeloX.getText()));
+			planet.setVeloY(Double.parseDouble(planetVeloY.getText()));
+			SolarSystem.addPlanet(planet);
+		} catch (Exception e) {
+			error(e.toString());
+		}
 	}
 	
 	@Override
