@@ -18,18 +18,12 @@ package de.ngc.ngcsolarsystem;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
-import java.text.Format;
-import java.text.NumberFormat;
-
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -63,7 +57,7 @@ public class GUIWindows implements RepaintCallListener {
 		dF = new DecimalFormat("00.0000E0");
 		
 		infoFrame.add(htmlLabel);
-		infoFrame.setVisible(true);
+		infoFrame.setVisible(false);
 		
 		newPlanetFrame = new JFrame("new Planet");
 		newPlanetFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -109,7 +103,7 @@ public class GUIWindows implements RepaintCallListener {
 	}
 	
 	protected void toggleInfoFrame(){
-		
+		infoFrame.setVisible(infoFrameIsVisable = !infoFrameIsVisable);
 	}
 	
 	protected void toggleNewPlanetFrame() {
