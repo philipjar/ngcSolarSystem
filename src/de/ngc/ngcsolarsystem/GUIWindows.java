@@ -61,6 +61,7 @@ public class GUIWindows implements RepaintCallListener {
 		SolarSystem.addRepaintCallListener(this);
 		
 		infoFrame = new JFrame("Bahndaten");
+		
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		infoFrame.setSize(300, 130);
 		infoFrame.setResizable(false);
@@ -69,6 +70,12 @@ public class GUIWindows implements RepaintCallListener {
 		dF = new DecimalFormat("00.0000E0");
 		
 		infoFrame.add(htmlLabel);
+		infoFrame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				toggleInfoFrame();
+			}
+		});
 		infoFrame.setVisible(false);
 		
 		newPlanetFrame = new JFrame("new Planet");
