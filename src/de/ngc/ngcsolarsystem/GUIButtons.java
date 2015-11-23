@@ -72,6 +72,12 @@ public class GUIButtons extends JPanel {
 		buttonInfo.setFont(font);
 		buttonInfo.setPreferredSize(new Dimension(40, 40));
 		buttonInfo.setMargin(new Insets(0, 0, 0, 0));
+		buttonInfo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+					
+			}
+		});
 		add(buttonInfo);
 		
 		buttonNewPlanet = new JButton();
