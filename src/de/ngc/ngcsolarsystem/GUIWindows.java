@@ -56,7 +56,7 @@ public class GUIWindows implements RepaintCallListener {
 		
 		infoFrame = new JFrame("Bahndaten");
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		infoFrame.setSize(300, 100);
+		infoFrame.setSize(300, 130);
 		infoFrame.setResizable(false);
 		
 		htmlLabel = new JLabel();
@@ -137,13 +137,14 @@ public class GUIWindows implements RepaintCallListener {
 	
 	private void repaintFrame(){
 		try {
-			infoFrame.setSize(300, SolarSystem.planets.size() *100);
+			infoFrame.setSize(300, SolarSystem.planets.size() *130);
 			String allData = "<html><body>";
 			for(Planet p : SolarSystem.planets){
 				allData = allData + p.getName() + ": "
-						+ "<br>" 
-						+ "Bahngeschwindigkeit(x): " + dF.format(p.veloX())				
-						+ "<br>Bahnradius: " + dF.format(p.getOrbitalRadius())
+						+ "<br>Orbital velocity(x): " + dF.format(p.veloX())
+						+ "<br>Orbital velocity(y): " + dF.format(p.veloY())
+						+ "<br>"
+						+ "<br>Orbital radius: " + dF.format(p.getOrbitalRadius())
 						+ "<br><br>"
 						;
 			}
