@@ -21,13 +21,16 @@ import java.text.DecimalFormat;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class GUIWindows{
+public class GUIWindows implements RepaintCallListener {
 	
 	JFrame infoFrame;
 	JLabel htmlLabel;
 	DecimalFormat dF;
 	
+	boolean infoFrameIsVisable = false;
+	
 	public GUIWindows(){
+		SolarSystem.addRepaintCallListener(this);
 		
 		infoFrame = new JFrame("Bahndaten");
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -41,7 +44,18 @@ public class GUIWindows{
 		infoFrame.setVisible(true);
 	}
 	
-	public void repaintFrame(){
+	public void toggleInfoFrame(){
+		
+		
+		
+	}
+	
+	@Override
+	public void onRepaint() {
+		repaintFrame();
+	}
+	
+	private void repaintFrame(){
 		try {
 			Planet p = SolarSystem.planets.get(0);
 			htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + dF.format(p.veloX())				
