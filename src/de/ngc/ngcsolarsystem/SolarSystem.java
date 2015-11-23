@@ -22,7 +22,8 @@ import java.util.ArrayList;
 public class SolarSystem {
 	
 	private static GUI gui;
-	private static GUIWindows windows;
+	
+	private static ArrayList<RepaintCallListener> repCallListeners = new ArrayList<>();
 	
 	protected static ArrayList<Planet> planets = new ArrayList<>();
 	
@@ -51,11 +52,12 @@ public class SolarSystem {
 		planets.add(earth);
 		
 		gui = new GUI();
-		windows = new GUIWindows();
 		
 		while (true) { 
-			gui.repaintFrame();
-			windows.repaintFrame();
+//			gui.repaintFrame();
+			for (RepaintCallListener listener : repCallListeners) {
+				listener.onRepaint();
+			}
 			try {
 				Thread.sleep(10);
 			} catch (InterruptedException e) { }
@@ -64,6 +66,10 @@ public class SolarSystem {
 				p.next();
 			}
 		}
+	}
+	
+	protected static void addRepaintCallListener(RepaintCallListener repCallListener) {
+		repCallListeners.add(repCallListener);
 	}
 	
 	protected static double getSunSize() {
