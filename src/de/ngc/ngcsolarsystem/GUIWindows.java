@@ -56,7 +56,7 @@ public class GUIWindows implements RepaintCallListener {
 		
 		infoFrame = new JFrame("Bahndaten");
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		infoFrame.setSize(300, 200);
+		infoFrame.setSize(300, 100);
 		infoFrame.setResizable(false);
 		
 		htmlLabel = new JLabel();
@@ -137,18 +137,17 @@ public class GUIWindows implements RepaintCallListener {
 	
 	private void repaintFrame(){
 		try {
-			Planet p = SolarSystem.planets.get(0);
-			htmlLabel.setText("<html><body>Bahngeschwindigkeit(x): " + dF.format(p.veloX())				
-							+ "<br>Bahngeschwindigkeit(y): " + dF.format(p.veloY())
-							+ "<br>"
-							+ "<br>Bahnbeschleunigung(x): " + dF.format(p.getAccelX())
-							+ "<br>Bahnbeschleunigung(y): " + dF.format(p.getAccelY())
-							+ "<br>"
-							+ "<br>x-Wert: " + dF.format(p.X())
-							+ "<br>y-Wert: " + dF.format(p.Y())
-							+ "<br>" 
-							+ "<br>Bahnradius: " + dF.format(p.getOrbitalRadius())
-							+ "</body></html>");
+			infoFrame.setSize(300, SolarSystem.planets.size() *100);
+			String allData = "<html><body>";
+			for(Planet p : SolarSystem.planets){
+				allData = allData + p.getName() + ": "
+						+ "<br>" 
+						+ "Bahngeschwindigkeit(x): " + dF.format(p.veloX())				
+						+ "<br>Bahnradius: " + dF.format(p.getOrbitalRadius())
+						+ "<br><br>"
+						;
+			}
+			htmlLabel.setText(allData + "</body></html>");
 		} catch (NullPointerException e) {
 			/* This try-catch block is a temporary workaround.
 			 * A NullPointerException sometimes shows up and we don*t know why yet.
