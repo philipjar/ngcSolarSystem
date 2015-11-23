@@ -16,18 +16,39 @@
  */
 package de.ngc.ngcsolarsystem;
 
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
+import java.text.Format;
+import java.text.NumberFormat;
 
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class GUIWindows implements RepaintCallListener {
 	
 	JFrame infoFrame;
 	JLabel htmlLabel;
 	DecimalFormat dF;
-	
 	boolean infoFrameIsVisable = false;
+	
+	JFrame newPlanetFrame;
+	JTextField planetName;
+	JTextField planetColor;
+	JTextField planetRadius;
+	JTextField planetVeloX;
+	JTextField planetVeloY;
+	JButton planetCancelButton;
+	JButton planetOkButton;
+	boolean newPlanetFrameVisible = false;
 	
 	public GUIWindows(){
 		SolarSystem.addRepaintCallListener(this);
@@ -42,12 +63,61 @@ public class GUIWindows implements RepaintCallListener {
 		
 		infoFrame.add(htmlLabel);
 		infoFrame.setVisible(true);
+		
+		newPlanetFrame = new JFrame("new Planet");
+		newPlanetFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		newPlanetFrame.setSize(300, 150);
+		newPlanetFrame.setLayout(new GridLayout(0, 2, 5, 5));
+		
+		newPlanetFrame.add(new JLabel("Name:"));
+		newPlanetFrame.add(planetName = new JTextField("Unknown"));
+		newPlanetFrame.add(new JLabel("Color"));
+		newPlanetFrame.add(planetColor = new JTextField("#0000FF"));
+		newPlanetFrame.add(new JLabel("Radius/startPosX"));
+		newPlanetFrame.add(planetRadius = new JTextField());
+		newPlanetFrame.add(new JLabel("Velocity X"));
+		newPlanetFrame.add(planetVeloX = new JTextField("0.0E0"));
+		newPlanetFrame.add(new JLabel("Velocity Y"));
+		newPlanetFrame.add(planetVeloY = new JTextField("0.0E0"));
+		newPlanetFrame.add(planetCancelButton = new JButton("Cancel"));
+		newPlanetFrame.add(planetOkButton = new JButton("OK"));
+		
+		newPlanetFrame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				toggleNewPlanetFrame();
+				
+			}
+		});
+		
+		planetCancelButton.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toggleNewPlanetFrame();
+			}
+		});
+		
+		planetOkButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				submitPlanet();
+				toggleNewPlanetFrame();
+			}
+		});
+		
+		newPlanetFrame.setVisible(false);
 	}
 	
-	public void toggleInfoFrame(){
+	protected void toggleInfoFrame(){
 		
-		
-		
+	}
+	
+	protected void toggleNewPlanetFrame() {
+		newPlanetFrame.setVisible(newPlanetFrameVisible = !newPlanetFrameVisible);
+	}
+	
+	private void submitPlanet() {
+		//TODO
 	}
 	
 	@Override
