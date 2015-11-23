@@ -21,11 +21,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
-public class GUI {
+public class GUI implements RepaintCallListener {
 	
 	private JFrame frame;
 
 	public GUI(){
+		SolarSystem.addRepaintCallListener(this);
 		
 		//mainFrame
 		frame = new JFrame("Solar System"); 
@@ -45,13 +46,19 @@ public class GUI {
 		frame.add(sideButtons, BorderLayout.LINE_END);
 		
 		frame.pack();
+		
 	
 	}
-	
+	/*
 	public void repaintFrame() {
 		
 		frame.repaint();
 		
+	} */
+
+	@Override
+	public void onRepaint() {
+		frame.repaint();	
 	}
 
 }
