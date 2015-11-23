@@ -63,7 +63,7 @@ public class GUIWindows implements RepaintCallListener {
 		dF = new DecimalFormat("00.0000E0");
 		
 		infoFrame.add(htmlLabel);
-		infoFrame.setVisible(true);
+		infoFrame.setVisible(false);
 		
 		newPlanetFrame = new JFrame("new Planet");
 		newPlanetFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -109,7 +109,7 @@ public class GUIWindows implements RepaintCallListener {
 	}
 	
 	protected void toggleInfoFrame(){
-		
+		infoFrame.setVisible(infoFrameIsVisable = !infoFrameIsVisable);
 	}
 	
 	protected void toggleNewPlanetFrame() {
