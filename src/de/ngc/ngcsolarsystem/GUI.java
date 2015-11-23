@@ -49,12 +49,6 @@ public class GUI implements RepaintCallListener {
 		
 	
 	}
-	/*
-	public void repaintFrame() {
-		
-		frame.repaint();
-		
-	} */
 
 	@Override
 	public void onRepaint() {
