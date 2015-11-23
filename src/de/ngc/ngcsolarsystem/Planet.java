@@ -62,11 +62,11 @@ public class Planet {
 		this.color = color;	
 	}
 
-	public double getConversionFactor() {
+	protected double getConversionFactor() {
 		return conversionFactor;
 	}
 
-	public void setConversionFactor(double conversionFactor) {
+	protected void setConversionFactor(double conversionFactor) {
 		this.conversionFactor = conversionFactor;
 	}
 
