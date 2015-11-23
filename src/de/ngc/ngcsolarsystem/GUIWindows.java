@@ -17,12 +17,15 @@
 package de.ngc.ngcsolarsystem;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
+
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -106,15 +109,17 @@ public class GUIWindows implements RepaintCallListener {
 		newPlanetFrame.setVisible(false);
 		
 		errorFrame = new JFrame("Error <3");
+		errorFrame.setSize(400, 80);
+		errorFrame.setLayout(new FlowLayout());
 		errorLabel = new JLabel();
 		errorFrame.add(errorLabel);
+		errorFrame.add(errorOkButton = new JButton("Ok"));
 		errorOkButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				errorFrame.setVisible(false);
 			}
 		});
-		errorFrame.add(errorOkButton = new JButton("Ok"));
 		errorFrame.setVisible(false);
 	}
 	
@@ -145,7 +150,7 @@ public class GUIWindows implements RepaintCallListener {
 			planet.setVeloY(Double.parseDouble(planetVeloY.getText()));
 			SolarSystem.addPlanet(planet);
 		} catch (Exception e) {
-			
+			error(e.toString());
 		}
 	}
 	
