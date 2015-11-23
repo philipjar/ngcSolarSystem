@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -30,11 +31,17 @@ import java.text.DecimalFormat;
 import java.text.Format;
 import java.text.NumberFormat;
 
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 
 public class GUIWindows implements RepaintCallListener {
 	
@@ -57,6 +64,12 @@ public class GUIWindows implements RepaintCallListener {
 	JLabel errorLabel;
 	JButton errorOkButton;
 	
+	JFrame deleteFrame;
+	DefaultListModel<String> deleteListModel;
+	JList<String> deleteList;
+	JButton deleteButton;
+	boolean deleteFrameVisible = false;
+	
 	public GUIWindows(){
 		SolarSystem.addRepaintCallListener(this);
 		
@@ -69,7 +82,7 @@ public class GUIWindows implements RepaintCallListener {
 		dF = new DecimalFormat("00.0000E0");
 		
 		infoFrame.add(htmlLabel);
-		infoFrame.setVisible(false);
+		infoFrame.setVisible(infoFrameIsVisable);
 		
 		newPlanetFrame = new JFrame("new Planet");
 		newPlanetFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -111,10 +124,10 @@ public class GUIWindows implements RepaintCallListener {
 			}
 		});
 		
-		newPlanetFrame.setVisible(false);
+		newPlanetFrame.setVisible(newPlanetFrameVisible);
 		
 		errorFrame = new JFrame("Error <3");
-		errorFrame.setSize(400, 80);
+		errorFrame.setSize(400, 70);
 		errorFrame.setLayout(new FlowLayout());
 		errorLabel = new JLabel();
 		errorFrame.add(errorLabel);
@@ -126,6 +139,30 @@ public class GUIWindows implements RepaintCallListener {
 			}
 		});
 		errorFrame.setVisible(false);
+		
+		deleteFrame = new JFrame("remove Planet");
+		deleteFrame.setSize(300, 200);
+		deleteFrame.setLayout(new BoxLayout(deleteFrame.getContentPane(), BoxLayout.Y_AXIS));
+		deleteListModel = new DefaultListModel<String>();
+		for (Planet p : SolarSystem.planets) {
+			String toAdd = String.valueOf(SolarSystem.planets.indexOf(p)) + " " + p.getName();
+			deleteListModel.addElement(toAdd);
+		}
+		deleteList = new JList<String>(deleteListModel);
+		deleteButton = new JButton("Remove");
+		deleteButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int index = deleteList.getSelectedIndex();
+				if (index < 0)
+					return;
+				SolarSystem.planets.remove(index);
+				updateDeleteListModel();
+			}
+		});
+		deleteFrame.add(new JScrollPane(deleteList));
+		deleteFrame.add(deleteButton);
+		deleteFrame.setVisible(deleteFrameVisible);
 	}
 	
 	protected void toggleInfoFrame(){
@@ -136,9 +173,24 @@ public class GUIWindows implements RepaintCallListener {
 		newPlanetFrame.setVisible(newPlanetFrameVisible = !newPlanetFrameVisible);
 	}
 	
+	protected void toggleDeleteFrame() {
+		deleteFrame.setVisible(deleteFrameVisible = !deleteFrameVisible);
+		if (deleteFrame.isVisible())
+			updateDeleteListModel();
+	}
+	
 	protected void error(String msg) {
 		errorLabel.setText(msg);
 		errorFrame.setVisible(true);
+	}
+	
+	private void updateDeleteListModel() {
+		deleteListModel.clear();
+		for (Planet p : SolarSystem.planets) {
+			String toAdd = String.valueOf(SolarSystem.planets.indexOf(p)) + " " + p.getName();
+			deleteListModel.addElement(toAdd);
+		}
+		deleteList.setModel(deleteListModel);
 	}
 	
 	private void submitPlanet() {
