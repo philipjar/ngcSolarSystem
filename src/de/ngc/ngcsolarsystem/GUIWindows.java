@@ -45,6 +45,10 @@ public class GUIWindows implements RepaintCallListener {
 	JButton planetOkButton;
 	boolean newPlanetFrameVisible = false;
 	
+	JFrame errorFrame;
+	JLabel errorLabel;
+	JButton errorOkButton;
+	
 	public GUIWindows(){
 		SolarSystem.addRepaintCallListener(this);
 		
@@ -100,6 +104,18 @@ public class GUIWindows implements RepaintCallListener {
 		});
 		
 		newPlanetFrame.setVisible(false);
+		
+		errorFrame = new JFrame("Error <3");
+		errorLabel = new JLabel();
+		errorFrame.add(errorLabel);
+		errorOkButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				errorFrame.setVisible(false);
+			}
+		});
+		errorFrame.add(errorOkButton = new JButton("Ok"));
+		errorFrame.setVisible(false);
 	}
 	
 	protected void toggleInfoFrame(){
@@ -110,18 +126,27 @@ public class GUIWindows implements RepaintCallListener {
 		newPlanetFrame.setVisible(newPlanetFrameVisible = !newPlanetFrameVisible);
 	}
 	
+	protected void error(String msg) {
+		errorLabel.setText(msg);
+		errorFrame.setVisible(true);
+	}
+	
 	private void submitPlanet() {
-		Planet planet = new Planet();
-		planet.setName(planetName.getText());
-		planet.setColor(Color.decode(planetColor.getText()));
-		planet.setOwnRadius(6378E6); /* Standard size (Earth radius) */
-		planet.setOwnMass(0.0); /* Not used */
-		planet.setOrbitalRadius(Double.parseDouble(planetRadius.getText()));
-		planet.setX(Double.parseDouble(planetRadius.getText()));
-		planet.setY(0.0);
-		planet.setVeloX(Double.parseDouble(planetVeloX.getText()));
-		planet.setVeloY(Double.parseDouble(planetVeloY.getText()));
-		SolarSystem.addPlanet(planet);
+		try {
+			Planet planet = new Planet();
+			planet.setName(planetName.getText());
+			planet.setColor(Color.decode(planetColor.getText()));
+			planet.setOwnRadius(6378E6); /* Standard size (Earth radius) */
+			planet.setOwnMass(0.0); /* Not used */
+			planet.setOrbitalRadius(Double.parseDouble(planetRadius.getText()));
+			planet.setX(Double.parseDouble(planetRadius.getText()));
+			planet.setY(0.0);
+			planet.setVeloX(Double.parseDouble(planetVeloX.getText()));
+			planet.setVeloY(Double.parseDouble(planetVeloY.getText()));
+			SolarSystem.addPlanet(planet);
+		} catch (Exception e) {
+			
+		}
 	}
 	
 	@Override
