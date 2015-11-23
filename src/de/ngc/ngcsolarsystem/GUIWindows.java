@@ -16,6 +16,7 @@
  */
 package de.ngc.ngcsolarsystem;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
@@ -86,7 +87,6 @@ public class GUIWindows implements RepaintCallListener {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				toggleNewPlanetFrame();
-				
 			}
 		});
 		
@@ -117,7 +117,16 @@ public class GUIWindows implements RepaintCallListener {
 	}
 	
 	private void submitPlanet() {
-		//TODO
+		Planet planet = new Planet();
+		planet.setName(planetName.getText());
+		planet.setColor(Color.decode(planetColor.getText()));
+		planet.setOwnRadius(0.0); /* Not used */
+		planet.setOwnMass(0.0); /* Not used */
+		planet.setOrbitalRadius(Double.parseDouble(planetRadius.getText()));
+		planet.setX(Double.parseDouble(planetRadius.getText()));
+		planet.setY(0.0);
+		planet.setVeloX(Double.parseDouble(planetVeloX.getText()));
+		planet.setVeloY(Double.parseDouble(planetVeloY.getText()));
 	}
 	
 	@Override
