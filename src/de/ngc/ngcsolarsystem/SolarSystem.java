@@ -27,6 +27,7 @@ public class SolarSystem {
 	
 	protected static ArrayList<Planet> planets = new ArrayList<>();
 	
+	private static double centralStarMass = 1.99E30;
 	private static double sunSize = 13.014E8;
 	
 	/* Calculating the realLife to pixelLife conversion factor here */
@@ -44,7 +45,7 @@ public class SolarSystem {
 		earth.setOwnRadius(6378.0E6);
 		earth.setOwnMass(0.0);
 		earth.setOrbitalRadius(147.1E9);
-		earth.setCentralStarMass(1.99E30);
+		earth.setCentralStarMass(centralStarMass);
 		earth.setX(147.1E9);
 		earth.setY(0);
 		earth.setVeloX(0.0);
@@ -54,7 +55,6 @@ public class SolarSystem {
 		gui = new GUI();
 		
 		while (true) { 
-//			gui.repaintFrame();
 			for (RepaintCallListener listener : repCallListeners) {
 				listener.onRepaint();
 			}
@@ -66,6 +66,12 @@ public class SolarSystem {
 				p.next();
 			}
 		}
+	}
+	
+	protected static void addPlanet(Planet planet) {
+		planet.setConversionFactor(conversionFactor);
+		planet.setCentralStarMass(centralStarMass);
+		planets.add(planet);
 	}
 	
 	protected static void addRepaintCallListener(RepaintCallListener repCallListener) {
