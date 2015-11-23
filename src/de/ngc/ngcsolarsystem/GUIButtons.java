@@ -79,7 +79,7 @@ public class GUIButtons extends JPanel {
 		buttonInfo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-					
+					windows.toggleInfoFrame();
 			}
 		});
 		add(buttonInfo);
