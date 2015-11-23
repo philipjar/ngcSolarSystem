@@ -25,16 +25,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
+
 
 import java.text.Format;
 import java.text.NumberFormat;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
+
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -73,15 +73,22 @@ public class GUIWindows implements RepaintCallListener {
 	public GUIWindows(){
 		SolarSystem.addRepaintCallListener(this);
 		
-		infoFrame = new JFrame("Bahndaten");
+		infoFrame = new JFrame("Orbit data");
+		
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		infoFrame.setSize(300, 100);
+		infoFrame.setSize(300, 130);
 		infoFrame.setResizable(false);
 		
 		htmlLabel = new JLabel();
 		dF = new DecimalFormat("00.0000E0");
 		
 		infoFrame.add(htmlLabel);
+		infoFrame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				toggleInfoFrame();
+			}
+		});
 		infoFrame.setVisible(infoFrameIsVisable);
 		
 		newPlanetFrame = new JFrame("new Planet");
@@ -218,13 +225,14 @@ public class GUIWindows implements RepaintCallListener {
 	
 	private void repaintFrame(){
 		try {
-			infoFrame.setSize(300, SolarSystem.planets.size() *100);
+			infoFrame.setSize(300, SolarSystem.planets.size() *130);
 			String allData = "<html><body>";
 			for(Planet p : SolarSystem.planets){
 				allData = allData + p.getName() + ": "
-						+ "<br>" 
-						+ "Bahngeschwindigkeit(x): " + dF.format(p.veloX())				
-						+ "<br>Bahnradius: " + dF.format(p.getOrbitalRadius())
+						+ "<br>Orbital velocity(x): " + dF.format(p.veloX())
+						+ "<br>Orbital velocity(y): " + dF.format(p.veloY())
+						+ "<br>"
+						+ "<br>Orbital radius: " + dF.format(p.getOrbitalRadius())
 						+ "<br><br>"
 						;
 			}
