@@ -19,18 +19,12 @@ package de.ngc.ngcsolarsystem;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.text.DecimalFormat;
 
-
-import java.text.Format;
-import java.text.NumberFormat;
 
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
@@ -39,10 +33,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
 
 public class GUIWindows implements RepaintCallListener {
 	
@@ -75,21 +67,24 @@ public class GUIWindows implements RepaintCallListener {
 		SolarSystem.addRepaintCallListener(this);
 		
 		infoFrame = new JFrame("Orbit data");
-		
+		infoFrame.setLayout(new FlowLayout());
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		infoFrame.setSize(300, 130);
 		infoFrame.setResizable(false);
+		infoFrame.setVisible(infoFrameIsVisable);
 		
 		htmlLabel = new JLabel();
 		dF = new DecimalFormat("00.0000E0");
 		
 		infoFrame.add(htmlLabel);
+		
 		infoFrame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				toggleInfoFrame();
 			}
 		});
+		
 		infoFrame.setVisible(infoFrameIsVisable);
 		
 		newPlanetFrame = new JFrame("new Planet");
@@ -233,17 +228,20 @@ public class GUIWindows implements RepaintCallListener {
 	
 	private void repaintFrame(){
 		try {
-			infoFrame.setSize(300, SolarSystem.getPlanetsList().size() * 130);
+			infoFrame.setSize(300, SolarSystem.getPlanetsList().size() *100);
+			String hexColor;
 			String allData = "<html><body>";
+
+			Color c;
 			for(Planet p : SolarSystem.getPlanetsList()){
-				allData = allData + p.getName() + ": "
+				c = p.getColor();
+				hexColor = String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
+				allData = allData + "<p><font size = '4' color = " + hexColor + "> " + p.getName() + ": </font>"
 						+ "<br>Orbital velocity(x): " + dF.format(p.veloX())
 						+ "<br>Orbital velocity(y): " + dF.format(p.veloY())
-						+ "<br>"
 						+ "<br>Orbital radius: " + dF.format(p.getOrbitalRadius())
-						+ "<br><br>"
-						;
-			}
+						+ "</p>"
+						;}
 			htmlLabel.setText(allData + "</body></html>");
 		} catch (NullPointerException e) {
 			/* This try-catch block is a temporary workaround.
