@@ -75,21 +75,24 @@ public class GUIWindows implements RepaintCallListener {
 		SolarSystem.addRepaintCallListener(this);
 		
 		infoFrame = new JFrame("Orbit data");
-		
+		infoFrame.setLayout(new FlowLayout());
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		infoFrame.setSize(300, 130);
 		infoFrame.setResizable(false);
+		infoFrame.setVisible(infoFrameIsVisable);
 		
 		htmlLabel = new JLabel();
 		dF = new DecimalFormat("00.0000E0");
 		
 		infoFrame.add(htmlLabel);
+		
 		infoFrame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				toggleInfoFrame();
 			}
 		});
+		
 		infoFrame.setVisible(infoFrameIsVisable);
 		
 		newPlanetFrame = new JFrame("new Planet");
@@ -233,17 +236,17 @@ public class GUIWindows implements RepaintCallListener {
 	
 	private void repaintFrame(){
 		try {
-			infoFrame.setSize(300, SolarSystem.planets.size() *130);
+			infoFrame.setSize(300, SolarSystem.planets.size() *100);
+			String hexColor;
 			String allData = "<html><body>";
 			for(Planet p : SolarSystem.planets){
-				allData = allData + p.getName() + ": "
+				hexColor = String.format("#%02x%02x%02x", p.getColor().getRed(), p.getColor().getGreen(), p.getColor().getBlue());
+				allData = allData + "<p><font size = '4' color = " + hexColor + "> " + p.getName() + ": </font>"
 						+ "<br>Orbital velocity(x): " + dF.format(p.veloX())
 						+ "<br>Orbital velocity(y): " + dF.format(p.veloY())
-						+ "<br>"
 						+ "<br>Orbital radius: " + dF.format(p.getOrbitalRadius())
-						+ "<br><br>"
-						;
-			}
+						+ "</p>"
+						;}
 			htmlLabel.setText(allData + "</body></html>");
 		} catch (NullPointerException e) {
 			/* This try-catch block is a temporary workaround.
