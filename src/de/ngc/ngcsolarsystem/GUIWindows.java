@@ -153,8 +153,8 @@ public class GUIWindows implements RepaintCallListener {
 		deleteFrame.setLayout(new BoxLayout(deleteFrame.getContentPane(), BoxLayout.Y_AXIS));
 		deleteFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		deleteListModel = new DefaultListModel<String>();
-		for (Planet p : SolarSystem.planets) {
-			String toAdd = String.valueOf(SolarSystem.planets.indexOf(p)) + " " + p.getName();
+		for (Planet p : SolarSystem.getPlanetsList()) {
+			String toAdd = String.valueOf(SolarSystem.getPlanetsList().indexOf(p)) + " " + p.getName();
 			deleteListModel.addElement(toAdd);
 		}
 		deleteList = new JList<String>(deleteListModel);
@@ -165,7 +165,7 @@ public class GUIWindows implements RepaintCallListener {
 				int index = deleteList.getSelectedIndex();
 				if (index < 0)
 					return;
-				SolarSystem.planets.remove(index);
+				SolarSystem.getPlanetsList().remove(index);
 				updateDeleteListModel();
 			}
 		});
@@ -201,8 +201,8 @@ public class GUIWindows implements RepaintCallListener {
 	
 	private void updateDeleteListModel() {
 		deleteListModel.clear();
-		for (Planet p : SolarSystem.planets) {
-			String toAdd = String.valueOf(SolarSystem.planets.indexOf(p)) + " " + p.getName();
+		for (Planet p : SolarSystem.getPlanetsList()) {
+			String toAdd = String.valueOf(SolarSystem.getPlanetsList().indexOf(p)) + " " + p.getName();
 			deleteListModel.addElement(toAdd);
 		}
 		deleteList.setModel(deleteListModel);
@@ -233,9 +233,9 @@ public class GUIWindows implements RepaintCallListener {
 	
 	private void repaintFrame(){
 		try {
-			infoFrame.setSize(300, SolarSystem.planets.size() *130);
+			infoFrame.setSize(300, SolarSystem.getPlanetsList().size() * 130);
 			String allData = "<html><body>";
-			for(Planet p : SolarSystem.planets){
+			for(Planet p : SolarSystem.getPlanetsList()){
 				allData = allData + p.getName() + ": "
 						+ "<br>Orbital velocity(x): " + dF.format(p.veloX())
 						+ "<br>Orbital velocity(y): " + dF.format(p.veloY())
