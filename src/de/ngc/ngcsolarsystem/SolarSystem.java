@@ -25,7 +25,7 @@ public class SolarSystem {
 	
 	private static ArrayList<RepaintCallListener> repCallListeners = new ArrayList<>();
 	
-	protected static ArrayList<Planet> planets = new ArrayList<>();
+	private static ArrayList<Planet> planets = new ArrayList<>();
 	
 	private static double centralStarMass = 1.99E30;
 	private static double sunSize = 13.014E8;
@@ -50,7 +50,7 @@ public class SolarSystem {
 		earth.setY(0);
 		earth.setVeloX(0.0);
 		earth.setVeloY(29.29E3);
-		planets.add(earth);
+		synchronizedPlanetAdd(earth);
 		
 		gui = new GUI();
 		
@@ -62,7 +62,7 @@ public class SolarSystem {
 				Thread.sleep(10);
 			} catch (InterruptedException e) { }
 			
-			for (Planet p : planets) {
+			for (Planet p : getPlanetsList()) {
 				p.next();
 			}
 		}
@@ -71,7 +71,19 @@ public class SolarSystem {
 	protected static void addPlanet(Planet planet) {
 		planet.setConversionFactor(conversionFactor);
 		planet.setCentralStarMass(centralStarMass);
-		planets.add(planet);
+		synchronizedPlanetAdd(planet);
+	}
+	
+	protected static ArrayList<Planet> getPlanetsList() {
+		synchronized (planets) {
+			return planets;
+		}
+	}
+	
+	private static void synchronizedPlanetAdd(Planet planet) {
+		synchronized (planets) {
+			planets.add(planet);
+		}
 	}
 	
 	protected static void addRepaintCallListener(RepaintCallListener repCallListener) {
@@ -98,7 +110,7 @@ public class SolarSystem {
 	
 	private static void updateConversionFactorToPlanets() {
 		conversionFactor = pixelLifeDistance / realLifeDistance;
-		for (Planet p : planets) {
+		for (Planet p : getPlanetsList()) {
 			p.setConversionFactor(conversionFactor);
 		}
 	}
