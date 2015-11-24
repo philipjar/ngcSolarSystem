@@ -239,8 +239,10 @@ public class GUIWindows implements RepaintCallListener {
 			infoFrame.setSize(300, SolarSystem.planets.size() *100);
 			String hexColor;
 			String allData = "<html><body>";
+			Color c;
 			for(Planet p : SolarSystem.planets){
-				hexColor = String.format("#%02x%02x%02x", p.getColor().getRed(), p.getColor().getGreen(), p.getColor().getBlue());
+				c = p.getColor();
+				hexColor = String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
 				allData = allData + "<p><font size = '4' color = " + hexColor + "> " + p.getName() + ": </font>"
 						+ "<br>Orbital velocity(x): " + dF.format(p.veloX())
 						+ "<br>Orbital velocity(y): " + dF.format(p.veloY())
