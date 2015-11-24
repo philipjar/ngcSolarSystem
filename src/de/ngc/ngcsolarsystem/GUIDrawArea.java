@@ -40,7 +40,7 @@ public class GUIDrawArea extends JPanel{
 		double sunSize = SolarSystem.getSunSize();
 		g2.fill(new Ellipse2D.Double(0-sunSize/2, 0-sunSize/2, sunSize, sunSize));
 		
-		for (Planet p : SolarSystem.planets) {
+		for (Planet p : SolarSystem.getPlanetsList()) {
 			g2.setColor(p.getColor());
 			g2.fill(new Ellipse2D.Double(p.X()-p.getOwnRadius(), p.Y()-p.getOwnRadius(), p.getOwnRadius()*2, p.getOwnRadius()*2));
 			for (double[] array : p.getLastPoints()) {
