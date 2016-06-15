@@ -46,63 +46,63 @@ public class Planet {
 		return;
 	}
 	
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 
-	protected void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	protected Color getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	protected void setColor(Color color) {
+	public void setColor(Color color) {
 		this.color = color;	
 	}
 
-	protected double getConversionFactor() {
+	public double getConversionFactor() {
 		return conversionFactor;
 	}
 
-	protected void setConversionFactor(double conversionFactor) {
+	public void setConversionFactor(double conversionFactor) {
 		this.conversionFactor = conversionFactor;
 	}
 
-	protected double getOwnRadius() {
+	public double getOwnRadius() {
 		return conversionFactor * ownRadius;
 	}
 
-	protected void setOwnRadius(double ownRadius) {
+	public void setOwnRadius(double ownRadius) {
 		this.ownRadius = ownRadius;	
 	}
 
-	protected double getOwnMass() {
+	public double getOwnMass() {
 		return ownMass;
 	}
 
-	protected void setOwnMass(double ownMass) {
+	public void setOwnMass(double ownMass) {
 		this.ownMass = ownMass;	
 	}
 
-	protected double getOrbitalRadius() {
+	public double getOrbitalRadius() {
 		return orbitalRadius;
 	}
 
-	protected void setOrbitalRadius(double orbitalRadius) {
+	public void setOrbitalRadius(double orbitalRadius) {
 		this.orbitalRadius = orbitalRadius;
 	}
 
-	protected double getCentralStarMass() {
+	public double getCentralStarMass() {
 		return centralStarMass;
 	}
 
-	protected void setCentralStarMass(double centralStarMass) {
+	public void setCentralStarMass(double centralStarMass) {
 		this.centralStarMass = centralStarMass;
 	}
 	
-	protected ArrayList<double[]> getLastPoints(){
+	public ArrayList<double[]> getLastPoints(){
 		ArrayList<double[]> convertedList = new ArrayList<>();
 		synchronized (lastPoints) {
 			for (double[] array : lastPoints) {
@@ -113,47 +113,47 @@ public class Planet {
 		return convertedList;
 	}
 
-	protected double X() {
+	public double X() {
 		return conversionFactor * x;
 	}
 
-	protected void setX(double startPointX) {
+	public void setX(double startPointX) {
 		this.x = startPointX;
 	}
 
-	protected double Y() {
+	public double Y() {
 		return conversionFactor * y;
 	}
 
-	protected void setY(double startPointY) {
+	public void setY(double startPointY) {
 		this.y = startPointY;
 	}
 
-	protected double veloX() {
+	public double veloX() {
 		return veloX;
 	}
 
-	protected void setVeloX(double startVeloX) {
+	public void setVeloX(double startVeloX) {
 		this.veloX = startVeloX;
 	}
 	
-	protected double veloY() {
+	public double veloY() {
 		return veloY;
 	}
 
-	protected void setVeloY(double startVeloY) {
+	public void setVeloY(double startVeloY) {
 		this.veloY = startVeloY;
 	}
 	
-	protected double getAccelX() {
+	public double getAccelX() {
 		return accelX;
 	}
 	
-	protected double getAccelY() {
+	public double getAccelY() {
 		return accelY;
 	}
 	
-	protected void next() {
+	public void next() {
 		double[] oldLoc = {x, y};
 		synchronized (lastPoints) {
 			/* Don't let the lastPoints List become too big as 

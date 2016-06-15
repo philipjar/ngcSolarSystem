@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.ngc.ngcsolarsystem;
+package de.ngc.ngcsolarsystem.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -25,6 +25,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import de.ngc.ngcsolarsystem.SolarSystem;
 
 public class GUIButtons extends JPanel {
 	

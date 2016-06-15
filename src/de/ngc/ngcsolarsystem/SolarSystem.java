@@ -19,6 +19,8 @@ package de.ngc.ngcsolarsystem;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import de.ngc.ngcsolarsystem.gui.GUI;
+
 public class SolarSystem {
 	
 	private static GUI gui;
@@ -68,13 +70,13 @@ public class SolarSystem {
 		}
 	}
 	
-	protected static void addPlanet(Planet planet) {
+	public static void addPlanet(Planet planet) {
 		planet.setConversionFactor(conversionFactor);
 		planet.setCentralStarMass(centralStarMass);
 		synchronizedPlanetAdd(planet);
 	}
 	
-	protected static ArrayList<Planet> getPlanetsList() {
+	public static ArrayList<Planet> getPlanetsList() {
 		synchronized (planets) {
 			return planets;
 		}
@@ -86,21 +88,21 @@ public class SolarSystem {
 		}
 	}
 	
-	protected static void addRepaintCallListener(RepaintCallListener repCallListener) {
+	public static void addRepaintCallListener(RepaintCallListener repCallListener) {
 		repCallListeners.add(repCallListener);
 	}
 	
-	protected static double getSunSize() {
+	public static double getSunSize() {
 		return conversionFactor * 20 * sunSize;
 	}
 	
-	protected static void zoomIn() {
+	public static void zoomIn() {
 		pixelLifeDistance += pixelLifeZoomDelta;
 		sunSize += pixelLifeZoomDelta / 2.0;
 		updateConversionFactorToPlanets();
 	}
 	
-	protected static void zoomOut() {
+	public static void zoomOut() {
 		if (pixelLifeDistance < pixelLifeZoomMin)
 			return;
 		pixelLifeDistance -= pixelLifeZoomDelta;

@@ -14,13 +14,16 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.ngc.ngcsolarsystem;
+package de.ngc.ngcsolarsystem.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import javax.swing.JPanel;
+
+import de.ngc.ngcsolarsystem.Planet;
+import de.ngc.ngcsolarsystem.SolarSystem;
 
 public class GUIDrawArea extends JPanel{
 

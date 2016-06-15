@@ -14,12 +14,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package de.ngc.ngcsolarsystem;
+package de.ngc.ngcsolarsystem.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
+
+import de.ngc.ngcsolarsystem.RepaintCallListener;
+import de.ngc.ngcsolarsystem.SolarSystem;
 
 public class GUI implements RepaintCallListener {
 	
@@ -33,12 +36,13 @@ public class GUI implements RepaintCallListener {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(750, 700);
 		frame.setVisible(true);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setLayout(new BorderLayout(0, 0));
 		
 		GUIDrawArea drawArea = new GUIDrawArea(); 
 		drawArea.setBackground(Color.BLACK);
 		drawArea.setPreferredSize(new Dimension(700, 700));
+		
 		frame.add(drawArea, BorderLayout.LINE_START);
 		
 		GUIButtons sideButtons = new GUIButtons();
