@@ -25,27 +25,28 @@ import javax.swing.JPanel;
 import de.ngc.ngcsolarsystem.Planet;
 import de.ngc.ngcsolarsystem.SolarSystem;
 
-public class GUIDrawArea extends JPanel{
+public class GUIDrawArea extends JPanel {
 
 	private static final long serialVersionUID = 3314874896779099613L;
 
 	@Override
-	protected void paintComponent(Graphics g){
+	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+
 		paint2D((Graphics2D) g);
 	}
-	
+
 	protected void paint2D(Graphics2D g2) {
-		g2.translate(0+350, 0+350);
-		
+		g2.translate(0 + 350, 0 + 350);
+
 		g2.setColor(Color.YELLOW);
 		double sunSize = SolarSystem.getSunSize();
-		g2.fill(new Ellipse2D.Double(0-sunSize/2, 0-sunSize/2, sunSize, sunSize));
-		
+		g2.fill(new Ellipse2D.Double(0 - sunSize / 2, 0 - sunSize / 2, sunSize, sunSize));
+
 		for (Planet p : SolarSystem.getPlanetsList()) {
 			g2.setColor(p.getColor());
-			g2.fill(new Ellipse2D.Double(p.X()-p.getOwnRadius(), p.Y()-p.getOwnRadius(), p.getOwnRadius()*2, p.getOwnRadius()*2));
+			g2.fill(new Ellipse2D.Double(p.X() - p.getOwnRadius(), p.Y() - p.getOwnRadius(), p.getOwnRadius() * 2, p.getOwnRadius() * 2));
+			g2.drawString(p.getName(), (int) p.X(), (int) p.Y() -10);
 			for (double[] array : p.getLastPoints()) {
 				g2.fill(new Ellipse2D.Double(array[0], array[1], 1, 1));
 			}
