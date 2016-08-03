@@ -25,7 +25,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 
-
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 
@@ -41,12 +40,12 @@ import de.ngc.ngcsolarsystem.RepaintCallListener;
 import de.ngc.ngcsolarsystem.SolarSystem;
 
 public class GUIWindows implements RepaintCallListener {
-	
+
 	JFrame infoFrame;
 	JLabel htmlLabel;
 	DecimalFormat dF;
 	boolean infoFrameIsVisable = false;
-	
+
 	JFrame newPlanetFrame;
 	JTextField planetName;
 	JTextField planetColor;
@@ -56,46 +55,46 @@ public class GUIWindows implements RepaintCallListener {
 	JButton planetCancelButton;
 	JButton planetOkButton;
 	boolean newPlanetFrameVisible = false;
-	
+
 	JFrame errorFrame;
 	JLabel errorLabel;
 	JButton errorOkButton;
-	
+
 	JFrame deleteFrame;
 	DefaultListModel<String> deleteListModel;
 	JList<String> deleteList;
 	JButton deleteButton;
 	boolean deleteFrameVisible = false;
-	
-	public GUIWindows(){
+
+	public GUIWindows() {
 		SolarSystem.addRepaintCallListener(this);
-		
+
 		infoFrame = new JFrame("Orbit data");
 		infoFrame.setLayout(new FlowLayout());
 		infoFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		infoFrame.setSize(300, 130);
 		infoFrame.setResizable(false);
 		infoFrame.setVisible(infoFrameIsVisable);
-		
+
 		htmlLabel = new JLabel();
 		dF = new DecimalFormat("00.0000E0");
-		
+
 		infoFrame.add(htmlLabel);
-		
+
 		infoFrame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				toggleInfoFrame();
 			}
 		});
-		
+
 		infoFrame.setVisible(infoFrameIsVisable);
-		
+
 		newPlanetFrame = new JFrame("new Planet");
 		newPlanetFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		newPlanetFrame.setSize(300, 150);
 		newPlanetFrame.setLayout(new GridLayout(0, 2, 5, 5));
-		
+
 		newPlanetFrame.add(new JLabel("Name:"));
 		newPlanetFrame.add(planetName = new JTextField("Unknown"));
 		newPlanetFrame.add(new JLabel("Color"));
@@ -108,21 +107,21 @@ public class GUIWindows implements RepaintCallListener {
 		newPlanetFrame.add(planetVeloY = new JTextField("0.0E0"));
 		newPlanetFrame.add(planetCancelButton = new JButton("Cancel"));
 		newPlanetFrame.add(planetOkButton = new JButton("OK"));
-		
+
 		newPlanetFrame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
 				toggleNewPlanetFrame();
 			}
 		});
-		
-		planetCancelButton.addActionListener(new ActionListener() {	
+
+		planetCancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				toggleNewPlanetFrame();
 			}
 		});
-		
+
 		planetOkButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -130,9 +129,9 @@ public class GUIWindows implements RepaintCallListener {
 				toggleNewPlanetFrame();
 			}
 		});
-		
+
 		newPlanetFrame.setVisible(newPlanetFrameVisible);
-		
+
 		errorFrame = new JFrame("Error <3");
 		errorFrame.setSize(400, 70);
 		errorFrame.setLayout(new FlowLayout());
@@ -146,7 +145,7 @@ public class GUIWindows implements RepaintCallListener {
 			}
 		});
 		errorFrame.setVisible(false);
-		
+
 		deleteFrame = new JFrame("remove Planet");
 		deleteFrame.setSize(300, 200);
 		deleteFrame.setLayout(new BoxLayout(deleteFrame.getContentPane(), BoxLayout.Y_AXIS));
@@ -178,26 +177,26 @@ public class GUIWindows implements RepaintCallListener {
 		});
 		deleteFrame.setVisible(deleteFrameVisible);
 	}
-	
-	protected void toggleInfoFrame(){
+
+	protected void toggleInfoFrame() {
 		infoFrame.setVisible(infoFrameIsVisable = !infoFrameIsVisable);
 	}
-	
+
 	protected void toggleNewPlanetFrame() {
 		newPlanetFrame.setVisible(newPlanetFrameVisible = !newPlanetFrameVisible);
 	}
-	
+
 	protected void toggleDeleteFrame() {
 		deleteFrame.setVisible(deleteFrameVisible = !deleteFrameVisible);
 		if (deleteFrame.isVisible())
 			updateDeleteListModel();
 	}
-	
+
 	protected void error(String msg) {
 		errorLabel.setText(msg);
 		errorFrame.setVisible(true);
 	}
-	
+
 	private void updateDeleteListModel() {
 		deleteListModel.clear();
 		for (Planet p : SolarSystem.getPlanetsList()) {
@@ -206,7 +205,7 @@ public class GUIWindows implements RepaintCallListener {
 		}
 		deleteList.setModel(deleteListModel);
 	}
-	
+
 	private void submitPlanet() {
 		try {
 			Planet planet = new Planet();
@@ -224,33 +223,33 @@ public class GUIWindows implements RepaintCallListener {
 			error(e.toString());
 		}
 	}
-	
+
 	@Override
 	public void onRepaint() {
 		repaintFrame();
 	}
-	
-	private void repaintFrame(){
+
+	private void repaintFrame() {
 		try {
-			infoFrame.setSize(300, SolarSystem.getPlanetsList().size() *100);
+			infoFrame.setSize(300, SolarSystem.getPlanetsList().size() * 100);
 			String hexColor;
 			String allData = "<html><body>";
 
 			Color c;
-			for(Planet p : SolarSystem.getPlanetsList()){
+			for (Planet p : SolarSystem.getPlanetsList()) {
 				c = p.getColor();
 				hexColor = String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
 				allData = allData + "<p><font size = '4' color = " + hexColor + "> " + p.getName() + ": </font>"
-						+ "<br>Orbital velocity(x): " + dF.format(p.veloX())
-						+ "<br>Orbital velocity(y): " + dF.format(p.veloY())
-						+ "<br>Orbital radius: " + dF.format(p.getOrbitalRadius())
-						+ "</p>"
-						;}
+						+ "<br>Orbital velocity(x): " + dF.format(p.veloX()) + "<br>Orbital velocity(y): "
+						+ dF.format(p.veloY()) + "<br>Orbital radius: " + dF.format(p.getOrbitalRadius()) + "</p>";
+			}
 			htmlLabel.setText(allData + "</body></html>");
 		} catch (NullPointerException e) {
-			/* This try-catch block is a temporary workaround.
-			 * A NullPointerException sometimes shows up and we don*t know why yet.
-			 * Until this is fixed this workaround will prevent the JVM from aborting execution.
+			/*
+			 * This try-catch block is a temporary workaround. A
+			 * NullPointerException sometimes shows up and we don*t know why
+			 * yet. Until this is fixed this workaround will prevent the JVM
+			 * from aborting execution.
 			 */
 			System.err.println("The NullPointer came back to say Hi...");
 			e.printStackTrace();
