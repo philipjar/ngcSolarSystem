@@ -53,6 +53,7 @@ public class GUIButtons extends JPanel {
 		buttonZoomIn.setFont(font);
 		buttonZoomIn.setPreferredSize(new Dimension(40, 40));
 		buttonZoomIn.setMargin(new Insets(0, 0, 0, 0));
+		buttonZoomIn.setToolTipText("Zoom in");
 		buttonZoomIn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -66,6 +67,7 @@ public class GUIButtons extends JPanel {
 		buttonZoomOut.setFont(font);
 		buttonZoomOut.setPreferredSize(new Dimension(40, 40));
 		buttonZoomOut.setMargin(new Insets(0, 0, 0, 0));
+		buttonZoomOut.setToolTipText("Zoom out");
 		buttonZoomOut.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -79,6 +81,7 @@ public class GUIButtons extends JPanel {
 		buttonInfo.setFont(font);
 		buttonInfo.setPreferredSize(new Dimension(40, 40));
 		buttonInfo.setMargin(new Insets(0, 0, 0, 0));
+		buttonInfo.setToolTipText("Get planet information");
 		buttonInfo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -92,6 +95,7 @@ public class GUIButtons extends JPanel {
 		buttonNewPlanet.setFont(font);
 		buttonNewPlanet.setPreferredSize(new Dimension(40, 40));
 		buttonNewPlanet.setMargin(new Insets(0, 0, 0, 0));
+		buttonNewPlanet.setToolTipText("Add new planet");
 		buttonNewPlanet.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -105,6 +109,7 @@ public class GUIButtons extends JPanel {
 		buttonDeletePlanet.setFont(font);
 		buttonDeletePlanet.setPreferredSize(new Dimension(40, 40));
 		buttonDeletePlanet.setMargin(new Insets(0, 0, 0, 0));
+		buttonDeletePlanet.setToolTipText("Remove planet");
 		buttonDeletePlanet.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
