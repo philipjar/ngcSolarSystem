@@ -19,44 +19,54 @@ package de.ngc.ngcsolarsystem.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+
 import javax.swing.JFrame;
 
 import de.ngc.ngcsolarsystem.RepaintCallListener;
 import de.ngc.ngcsolarsystem.SolarSystem;
 
 public class GUI implements RepaintCallListener {
-	
+
 	private JFrame frame;
 
-	public GUI(){
+	public GUI() {
 		SolarSystem.addRepaintCallListener(this);
-		
-		//mainFrame
-		frame = new JFrame("Solar System"); 
+
+		// mainFrame
+		frame = new JFrame("Solar System");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(750, 700);
 		frame.setVisible(true);
 		frame.setResizable(true);
 		frame.setLayout(new BorderLayout(0, 0));
-		
-		GUIDrawArea drawArea = new GUIDrawArea(); 
+		frame.addMouseWheelListener(new MouseWheelListener() {
+
+			@Override
+			public void mouseWheelMoved(MouseWheelEvent e) {
+				if (e.getWheelRotation() > 0) SolarSystem.zoomOut();
+				else SolarSystem.zoomIn();
+			}
+		});
+
+		GUIDrawArea drawArea = new GUIDrawArea();
 		drawArea.setBackground(Color.BLACK);
 		drawArea.setPreferredSize(new Dimension(700, 700));
-		
+
 		frame.add(drawArea, BorderLayout.LINE_START);
-		
+
 		GUIButtons sideButtons = new GUIButtons();
 		sideButtons.setPreferredSize(new Dimension(50, 700));
 		frame.add(sideButtons, BorderLayout.LINE_END);
-		
+
 		frame.pack();
-		
-	
+
 	}
 
 	@Override
 	public void onRepaint() {
-		frame.repaint();	
+		frame.repaint();
 	}
 
 }
